@@ -32,7 +32,7 @@
 
   <main>
     <section class="info">
-      <h2 id="titulo-bienvenida">¡Bem-vindo al Carnaval!</h2>
+      <h2 id="titulo-bienvenida">¡Bem-vindo al Stand!</h2>
       <p id="texto-bienvenida">
         Gracias por visitarnos. Completa esta breve encuesta y ayúdanos a seguir compartiendo la alegría, color y
         creatividad de Brasil.
@@ -45,22 +45,32 @@
       <!-- Formulario -->
       <form id="encuestaForm">
         <div class="input-group">
-          <label for="nombre" id="label-nombre">Nombre completo</label>
+          <label for="nombre" id="label-nombre">Nombre completo *</label>
           <input type="text" id="nombre" name="nombre" required />
         </div>
 
         <div class="input-group">
-          <label for="identificacion" id="label-identificacion">Identificación</label>
+          <label for="identificacion" id="label-identificacion">Identificación *</label>
           <input type="text" id="identificacion" name="identificacion" required />
         </div>
 
         <div class="input-group">
-          <label for="programa" id="label-programa">Programa al que perteneces</label>
+          <label for="correo" id="label-correo">Correo electrónico *</label>
+          <input type="email" id="correo" name="correo" required />
+        </div>
+
+        <div class="input-group">
+          <label for="telefono" id="label-telefono">Teléfono *</label>
+          <input type="tel" id="telefono" name="telefono" required />
+        </div>
+
+        <div class="input-group">
+          <label for="programa" id="label-programa">Programa al que perteneces *</label>
           <input type="text" id="programa" name="programa" required />
         </div>
 
         <div class="input-group">
-          <label for="opinion" id="label-opinion">¿Qué te pareció el stand?</label>
+          <label for="opinion" id="label-opinion">¿Qué te pareció el stand? *</label>
           <textarea id="opinion" name="opinion" rows="3" required></textarea>
         </div>
 

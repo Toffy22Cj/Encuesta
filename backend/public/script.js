@@ -7,10 +7,12 @@ const textos = {
     textoBienvenida:
       "Gracias por visitarnos. Completa esta breve encuesta y ayúdanos a seguir compartiendo la alegría, color y creatividad de Brasil.",
     tituloEncuesta: "Encuesta de Satisfacción",
-    labelNombre: "Nombre completo",
-    labelIdentificacion: "Identificación",
-    labelPrograma: "Programa al que perteneces",
-    labelOpinion: "¿Qué te pareció el stand?",
+    labelNombre: "Nombre completo *",
+    labelIdentificacion: "Identificación *",
+    labelCorreo: "Correo electrónico *",
+    labelTelefono: "Teléfono *",
+    labelPrograma: "Programa al que perteneces *",
+    labelOpinion: "¿Qué te pareció el stand? *",
     btnEnviar: "Enviar opinión",
     textoCarga: "Enviando encuesta...",
     refAmazonas: "Amazonas",
@@ -31,10 +33,12 @@ const textos = {
     textoBienvenida:
       "Thank you for visiting us. Complete this short survey and help us continue sharing the joy, color and creativity of Brazil.",
     tituloEncuesta: "Satisfaction Survey",
-    labelNombre: "Full name",
-    labelIdentificacion: "Identification",
-    labelPrograma: "Program you belong to",
-    labelOpinion: "What did you think of the stand?",
+    labelNombre: "Full name *",
+    labelIdentificacion: "Identification *",
+    labelCorreo: "Email *",
+    labelTelefono: "Phone *",
+    labelPrograma: "Program you belong to *",
+    labelOpinion: "What did you think of the stand? *",
     btnEnviar: "Submit opinion",
     textoCarga: "Sending survey...",
     refAmazonas: "Amazon",
@@ -55,10 +59,12 @@ const textos = {
     textoBienvenida:
       "Obrigado por nos visitar. Complete esta breve pesquisa e ajude-nos a continuar compartilhando a alegria, cor e criatividade do Brasil.",
     tituloEncuesta: "Pesquisa de Satisfação",
-    labelNombre: "Nome completo",
-    labelIdentificacion: "Identificação",
-    labelPrograma: "Programa ao qual pertence",
-    labelOpinion: "O que você achou do estande?",
+    labelNombre: "Nome completo *",
+    labelIdentificacion: "Identificação *",
+    labelCorreo: "E-mail *",
+    labelTelefono: "Telefone *",
+    labelPrograma: "Programa ao qual pertence *",
+    labelOpinion: "O que você achou do estande? *",
     btnEnviar: "Enviar opinião",
     textoCarga: "Enviando pesquisa...",
     refAmazonas: "Amazônia",
@@ -94,6 +100,10 @@ function cambiarIdioma(idioma) {
     textos[idioma].labelNombre;
   document.getElementById("label-identificacion").textContent =
     textos[idioma].labelIdentificacion;
+  document.getElementById("label-correo").textContent =
+    textos[idioma].labelCorreo;
+  document.getElementById("label-telefono").textContent =
+    textos[idioma].labelTelefono;
   document.getElementById("label-programa").textContent =
     textos[idioma].labelPrograma;
   document.getElementById("label-opinion").textContent =
@@ -101,12 +111,18 @@ function cambiarIdioma(idioma) {
   document.getElementById("btn-enviar").textContent = textos[idioma].btnEnviar;
   document.getElementById("texto-carga").textContent =
     textos[idioma].textoCarga;
-  document.getElementById("ref-amazonas").textContent =
-    textos[idioma].refAmazonas;
-  document.getElementById("ref-playas").textContent = textos[idioma].refPlayas;
-  document.getElementById("ref-futbol").textContent = textos[idioma].refFutbol;
-  document.getElementById("ref-samba").textContent = textos[idioma].refSamba;
-  document.getElementById("ref-cafe").textContent = textos[idioma].refCafe;
+}
+
+// Función para validar correo electrónico
+function validarCorreo(correo) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(correo);
+}
+
+// Función para validar teléfono (permite formatos internacionales)
+function validarTelefono(telefono) {
+  const regex = /^[\+]?[0-9\s\-\(\)]{7,15}$/;
+  return regex.test(telefono.replace(/\s/g, ""));
 }
 
 // Función para crear confeti
@@ -178,6 +194,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const boton = document.getElementById("btn-enviar");
   const formSection = document.getElementById("formSection");
   const identificacionInput = document.getElementById("identificacion");
+  const correoInput = document.getElementById("correo");
+  const telefonoInput = document.getElementById("telefono");
 
   const API_URL =
     window.location.hostname === "localhost"
@@ -201,6 +219,36 @@ document.addEventListener("DOMContentLoaded", function () {
       timeoutId = setTimeout(() => {
         verificarIdentificacion(this.value.trim());
       }, 800);
+    });
+  }
+
+  // Validación en tiempo real de correo
+  if (correoInput) {
+    correoInput.addEventListener("blur", function () {
+      const correo = this.value.trim();
+      if (correo && !validarCorreo(correo)) {
+        mostrarError(this, "Por favor ingresa un correo electrónico válido");
+      } else {
+        limpiarError(this);
+      }
+    });
+  }
+
+  // Validación en tiempo real de teléfono
+  if (telefonoInput) {
+    telefonoInput.addEventListener("blur", function () {
+      const telefono = this.value.trim();
+      if (telefono && !validarTelefono(telefono)) {
+        mostrarError(this, "Por favor ingresa un número de teléfono válido");
+      } else {
+        limpiarError(this);
+      }
+    });
+
+    // Formatear teléfono mientras se escribe
+    telefonoInput.addEventListener("input", function () {
+      limpiarError(this);
+      this.value = this.value.replace(/[^0-9+\-\s\(\)]/g, "");
     });
   }
 
@@ -260,16 +308,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const formData = {
       nombre: document.getElementById("nombre").value.trim(),
       identificacion: document.getElementById("identificacion").value.trim(),
+      correo: document.getElementById("correo").value.trim(),
+      telefono: document.getElementById("telefono").value.trim(),
       programa: document.getElementById("programa").value.trim(),
       opinion: document.getElementById("opinion").value.trim(),
     };
 
-    // Validación básica
+    // Validación completa
     let esValido = true;
+
     if (!formData.nombre) {
       mostrarError(document.getElementById("nombre"), "El nombre es requerido");
       esValido = false;
     }
+
     if (!formData.identificacion) {
       mostrarError(
         document.getElementById("identificacion"),
@@ -277,6 +329,51 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       esValido = false;
     }
+
+    if (!formData.correo) {
+      mostrarError(
+        document.getElementById("correo"),
+        "El correo electrónico es requerido"
+      );
+      esValido = false;
+    } else if (!validarCorreo(formData.correo)) {
+      mostrarError(
+        document.getElementById("correo"),
+        "Por favor ingresa un correo electrónico válido"
+      );
+      esValido = false;
+    }
+
+    if (!formData.telefono) {
+      mostrarError(
+        document.getElementById("telefono"),
+        "El teléfono es requerido"
+      );
+      esValido = false;
+    } else if (!validarTelefono(formData.telefono)) {
+      mostrarError(
+        document.getElementById("telefono"),
+        "Por favor ingresa un número de teléfono válido"
+      );
+      esValido = false;
+    }
+
+    if (!formData.programa) {
+      mostrarError(
+        document.getElementById("programa"),
+        "El programa es requerido"
+      );
+      esValido = false;
+    }
+
+    if (!formData.opinion) {
+      mostrarError(
+        document.getElementById("opinion"),
+        "La opinión es requerida"
+      );
+      esValido = false;
+    }
+
     if (!esValido) return;
 
     // Efecto del botón y animación de carga

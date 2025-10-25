@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+
 app.use(express.static("./public")); // Sirve archivos estáticos
 // Página del panel admin
 app.get("/admin", (req, res) => {
@@ -131,15 +132,42 @@ app.get("/api/encuestas/:id", (req, res) => {
 
 // Ruta para enviar nueva encuesta
 // Luego actualiza la ruta POST /api/encuesta:
+// Ruta para enviar nueva encuesta
 app.post("/api/encuesta", (req, res) => {
   try {
-    const { nombre, identificacion, programa, opinion } = req.body;
+    const { nombre, identificacion, correo, telefono, programa, opinion } =
+      req.body;
 
     // Validación básica
-    if (!nombre || !identificacion || !programa || !opinion) {
+    if (
+      !nombre ||
+      !identificacion ||
+      !correo ||
+      !telefono ||
+      !programa ||
+      !opinion
+    ) {
       return res.status(400).json({
         success: false,
         message: "Todos los campos son requeridos",
+      });
+    }
+
+    // Validación de formato de correo
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(correo)) {
+      return res.status(400).json({
+        success: false,
+        message: "El formato del correo electrónico no es válido",
+      });
+    }
+
+    // Validación de formato de teléfono
+    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{7,15}$/;
+    if (!phoneRegex.test(telefono.replace(/\s/g, ""))) {
+      return res.status(400).json({
+        success: false,
+        message: "El formato del teléfono no es válido",
       });
     }
 
@@ -158,6 +186,8 @@ app.post("/api/encuesta", (req, res) => {
       id: Date.now().toString(),
       nombre: nombre.trim(),
       identificacion: identificacion.trim(),
+      correo: correo.trim(),
+      telefono: telefono.trim(),
       programa: programa.trim(),
       opinion: opinion.trim(),
       fecha: new Date().toISOString(),

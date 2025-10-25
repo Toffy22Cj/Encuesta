@@ -2,280 +2,69 @@
 <html lang="es">
 
 <head>
+    <link rel="stylesheet" href="styleadmin.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Admin - Encuestas Brasil</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #009C3B 0%, #FFCC29 50%, #002776 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            color: #002776;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: #009C3B;
-            font-size: 1.2em;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            border-left: 5px solid #009C3B;
-        }
-
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #002776;
-            display: block;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        .controls {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: #009C3B;
-            color: white;
-        }
-
-        .btn-secondary {
-            background: #002776;
-            color: white;
-        }
-
-        .btn-danger {
-            background: #FF3333;
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .table-container {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #002776;
-            color: white;
-            padding: 15px;
-            text-align: left;
-        }
-
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        tr:hover {
-            background: #f8f9fa;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #009C3B;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .error {
-            background: #ffe6e6;
-            color: #cc0000;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 10px 0;
-            text-align: center;
-        }
-
-        .success {
-            background: #e6ffe6;
-            color: #009C3B;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 10px 0;
-            text-align: center;
-        }
-
-        .action-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-            margin: 0 2px;
-            border-radius: 3px;
-            transition: background 0.3s;
-        }
-
-        .action-btn:hover {
-            background: #f0f0f0;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            th,
-            td {
-                padding: 8px 10px;
-                font-size: 0.9em;
-            }
-
-            .controls {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
-    </style>
+   
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1>🇧🇷 Panel de Administración</h1>
-            <p class="subtitle">Encuestas del Stand - Respuestas en Tiempo Real</p>
-        </header>
+<div class="container">
+    <header>
+        <h1>🇧🇷 Panel de Administración</h1>
+        <p class="subtitle">Encuestas del Stand - Respuestas en Tiempo Real</p>
+    </header>
 
-        <div class="stats-grid" id="statsGrid">
-            <div class="stat-card">
-                <span class="stat-number" id="totalRespuestas">0</span>
-                <span class="stat-label">Total Respuestas</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number" id="totalProgramas">0</span>
-                <span class="stat-label">Programas Diferentes</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number" id="ultimaFecha">-</span>
-                <span class="stat-label">Última Respuesta</span>
-            </div>
+    <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+            <span class="stat-number" id="totalRespuestas">0</span>
+            <span class="stat-label">Total Respuestas</span>
         </div>
-
-        <div class="controls">
-            <button class="btn btn-primary" onclick="cargarDatos()">🔄 Actualizar</button>
-            <button class="btn btn-secondary" onclick="exportarDatos()">📥 Exportar JSON</button>
-            <button class="btn btn-secondary" onclick="irAEncuesta()">📝 Ir al Formulario</button>
-            <button class="btn btn-danger" onclick="limpiarDatos()">🗑️ Limpiar Todo</button>
+        <div class="stat-card">
+            <span class="stat-number" id="totalProgramas">0</span>
+            <span class="stat-label">Programas Diferentes</span>
         </div>
-
-        <div id="mensaje"></div>
-
-        <div class="table-container">
-            <table id="tablaDatos">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Identificación</th>
-                        <th>Programa</th>
-                        <th>Opinión</th>
-                        <th>Fecha</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaBody">
-                    <tr>
-                        <td colspan="6" class="loading">
-                            <div class="spinner"></div>
-                            Cargando datos...
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="stat-card">
+            <span class="stat-number" id="ultimaFecha">-</span>
+            <span class="stat-label">Última Respuesta</span>
         </div>
     </div>
+
+    <div class="controls">
+        <button class="btn btn-primary" onclick="cargarDatos()">🔄 Actualizar</button>
+        <button class="btn btn-secondary" onclick="exportarDatos()">📥 Exportar JSON</button>
+        <button class="btn btn-secondary" onclick="irAEncuesta()">📝 Ir al Formulario</button>
+        <button class="btn btn-danger" onclick="limpiarDatos()">🗑️ Limpiar Todo</button>
+    </div>
+
+    <div id="mensaje"></div>
+
+    <div class="table-container">
+        <table id="tablaDatos">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Identificación</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Programa</th>
+                    <th>Opinión</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaBody">
+                <tr>
+                    <td colspan="8" class="loading">
+                        <div class="spinner"></div>
+                        Cargando datos...
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
     <script src="admin-script.js"></script>
 </body>

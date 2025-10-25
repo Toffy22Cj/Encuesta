@@ -21,7 +21,7 @@ async function cargarDatos() {
   try {
     tablaBody.innerHTML = `
             <tr>
-                <td colspan="6" class="loading">
+                <td colspan="8" class="loading">
                     <div class="spinner"></div>
                     Cargando datos...
                 </td>
@@ -54,7 +54,7 @@ async function cargarDatos() {
     console.error("Error:", error);
     tablaBody.innerHTML = `
             <tr>
-                <td colspan="6" class="error">
+                <td colspan="8" class="error">
                     ❌ Error al cargar los datos: ${error.message}
                 </td>
             </tr>
@@ -83,7 +83,7 @@ function actualizarTabla(datos) {
   if (datos.length === 0) {
     tablaBody.innerHTML = `
             <tr>
-                <td colspan="6" class="empty-state">
+                <td colspan="8" class="empty-state">
                     📝 No hay encuestas registradas todavía
                 </td>
             </tr>
@@ -103,11 +103,19 @@ function actualizarTabla(datos) {
     fila.innerHTML = `
             <td>${item.nombre}</td>
             <td>${item.identificacion}</td>
+            <td><a href="mailto:${item.correo}">${item.correo}</a></td>
+            <td><a href="tel:${item.telefono}">${item.telefono}</a></td>
             <td>${item.programa}</td>
-            <td>${item.opinion}</td>
+            <td title="${item.opinion}">${
+      item.opinion.length > 50
+        ? item.opinion.substring(0, 50) + "..."
+        : item.opinion
+    }</td>
             <td>${fecha}</td>
             <td>
-                <button class="action-btn" onclick="eliminarEncuesta('${item.id}')" title="Eliminar">
+                <button class="action-btn" onclick="eliminarEncuesta('${
+                  item.id
+                }')" title="Eliminar">
                     🗑️
                 </button>
             </td>

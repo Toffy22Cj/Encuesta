@@ -1,20 +1,3 @@
 {
-  "encuestas": [
-    {
-      "id": "1761359907644",
-      "nombre": "sharon",
-      "identificacion": "1234567890",
-      "programa": "fonoudiologia",
-      "opinion": "EL QUE HIZO LA PAGINA SE LUCIO",
-      "fecha": "2025-10-25T02:38:27.644Z"
-    },
-    {
-      "id": "1761360254246",
-      "nombre": "Carlos",
-      "identificacion": "1234565656",
-      "programa": "prueba",
-      "opinion": "bueno",
-      "fecha": "2025-10-25T02:44:14.246Z"
-    }
-  ]
+  "encuestas": []
 }

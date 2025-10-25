@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,365 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obrigado! 🇧🇷</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --verde: #009739;
-            --amarillo: #FEDF00;
-            --azul: #002776;
-            --blanco: #ffffff;
-            --dorado: #FFD700;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--verde) 0%, var(--azul) 50%, var(--verde) 100%);
-            color: var(--blanco);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Fondo animado con elementos brasileños */
-        .brasil-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.1;
-        }
-
-        .brasil-element {
-            position: absolute;
-            font-size: 2rem;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .element-1 {
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .element-2 {
-            top: 20%;
-            right: 15%;
-            animation-delay: 1s;
-        }
-
-        .element-3 {
-            bottom: 30%;
-            left: 20%;
-            animation-delay: 2s;
-        }
-
-        .element-4 {
-            bottom: 15%;
-            right: 25%;
-            animation-delay: 3s;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-20px) rotate(5deg);
-            }
-        }
-
-        .content {
-            z-index: 3;
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 3rem;
-            margin: 2rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            animation: slideIn 1s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px) scale(0.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .title-container {
-            margin-bottom: 2rem;
-        }
-
-        .flag-decoration {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .flag-circle {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        .circle-verde {
-            background: var(--verde);
-            animation-delay: 0s;
-        }
-
-        .circle-amarillo {
-            background: var(--amarillo);
-            animation-delay: 0.5s;
-        }
-
-        .circle-azul {
-            background: var(--azul);
-            animation-delay: 1s;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: scale(1.2);
-                opacity: 0.7;
-            }
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--amarillo), var(--dorado));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            animation: titleGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            from {
-                text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            }
-
-            to {
-                text-shadow: 0 5px 25px rgba(255, 215, 0, 0.5);
-            }
-        }
-
-        .message {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 1.5rem;
-            border-radius: 15px;
-            color: var(--azul);
-            position: relative;
-            border-left: 5px solid var(--amarillo);
-            animation: messageSlide 1.2s ease-out;
-        }
-
-        @keyframes messageSlide {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .message::before {
-            content: "🇧🇷";
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            font-size: 2rem;
-            animation: spin 4s linear infinite;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .btn-container {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            background: linear-gradient(45deg, var(--amarillo), var(--dorado));
-            color: var(--azul);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn:active {
-            transform: translateY(-2px) scale(1.02);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--blanco);
-            border: 2px solid var(--amarillo);
-        }
-
-        .social-tag {
-            margin-top: 2rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            border: 1px solid var(--amarillo);
-        }
-
-        .hashtag {
-            font-weight: 600;
-            color: var(--amarillo);
-            font-size: 1.2rem;
-            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
-        }
-
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        /* Efectos de partículas brasileñas */
-        .particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            animation: particleFloat 8s linear infinite;
-        }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .content {
-                padding: 2rem;
-                margin: 1rem;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .message {
-                font-size: 1.1rem;
-                padding: 1rem;
-            }
-
-            .btn-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 250px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="stylegracias.css">
 </head>
 
 <body>
@@ -399,6 +42,25 @@
             Nos alegra que hayas sido parte de esta feria tan especial 💕
         </div>
 
+        <!-- Sección de códigos QR -->
+        <div class="qr-section">
+            <div class="qr-title">📱 Comparte nuestra experiencia</div>
+            <div class="qr-container">
+                <div class="qr-item">
+                    <div id="qr-encuesta" class="qr-code">
+                        <div class="qr-placeholder">Cargando QR...</div>
+                    </div>
+                    <div class="qr-label">Encuesta Brasil</div>
+                </div>
+                <div class="qr-item">
+                    <div id="qr-agradecimiento" class="qr-code">
+                        <div class="qr-placeholder">Cargando QR...</div>
+                    </div>
+                    <div class="qr-label">Página de Agradecimiento</div>
+                </div>
+            </div>
+        </div>
+
         <div class="social-tag">
             📸 No olvides etiquetarnos y compartir tu momento con<br>
             <span class="hashtag">#Fonoferiabrasil</span> 🇧🇷
@@ -408,73 +70,313 @@
             <button class="btn" onclick="window.location.href='index.html'">
                 🎪 Volver al Stand
             </button>
-            <button class="btn btn-secondary" onclick="compartir()">
-                📱 Compartir Experiencia
+            <button class="btn btn-secondary" onclick="compartirConQR()">
+                📱 Compartir con QR
+            </button>
+            <button class="btn btn-secondary" onclick="descargarQRs()">
+                ⬇️ Descargar QRs
             </button>
         </div>
     </div>
 
+    <!-- Cargar QRCode desde CDN más confiable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+
     <script>
-        // 🌈 Animación de confeti mejorada
-        const canvas = document.getElementById('confetti');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // URLs para los QR
+        const urlEncuesta = window.location.origin + '/index.html';
+        const urlAgradecimiento = window.location.href;
 
-        const confettiCount = 200;
-        const confetti = [];
-        const colors = ['#009739', '#FEDF00', '#002776', '#FFFFFF', '#FF6B6B'];
-
-        for (let i = 0; i < confettiCount; i++) {
-            confetti.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height - canvas.height,
-                r: Math.random() * 8 + 3,
-                d: Math.random() * confettiCount,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                tilt: Math.floor(Math.random() * 10) - 10,
-                tiltAngle: 0,
-                tiltAngleIncrement: Math.random() * 0.1 + 0.05
-            });
+        // Función para verificar si la biblioteca QR está cargada
+        function verificarQRCode() {
+            if (typeof qrcode === 'undefined') {
+                console.error('QRCode library not loaded');
+                return false;
+            }
+            return true;
         }
 
-        function drawConfetti() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            confetti.forEach(p => {
-                ctx.save();
-                ctx.translate(p.x + p.tilt, p.y);
-                ctx.rotate(p.tiltAngle);
-                ctx.fillStyle = p.color;
-                ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r);
-                ctx.restore();
-            });
-            updateConfetti();
-        }
+        // Generar códigos QR usando la librería qrcode-generator
+        function generarQRs() {
+            if (!verificarQRCode()) {
+                console.log('Intentando cargar QRCode...');
+                setTimeout(generarQRs, 500);
+                return;
+            }
 
-        function updateConfetti() {
-            confetti.forEach(p => {
-                p.tiltAngle += p.tiltAngleIncrement;
-                p.y += (Math.cos(p.d) + 1 + p.r / 2) * 0.5;
-                p.x += Math.sin(p.d) * 2;
-                p.tilt = Math.sin(p.tiltAngle) * 15;
+            try {
+                console.log('Generando QRs con librería:', typeof qrcode);
 
-                if (p.y > canvas.height) {
-                    p.x = Math.random() * canvas.width;
-                    p.y = -20;
-                    p.r = Math.random() * 8 + 3;
+                // QR para la encuesta
+                const qrEncuesta = document.getElementById('qr-encuesta');
+                if (qrEncuesta) {
+                    qrEncuesta.innerHTML = '';
+                    generarQRConCanvas(qrEncuesta, urlEncuesta, '#002776');
                 }
-            });
+
+                // QR para la página de agradecimiento
+                const qrAgradecimiento = document.getElementById('qr-agradecimiento');
+                if (qrAgradecimiento) {
+                    qrAgradecimiento.innerHTML = '';
+                    generarQRConCanvas(qrAgradecimiento, urlAgradecimiento, '#009739');
+                }
+
+            } catch (error) {
+                console.error('Error en generarQRs:', error);
+                // Fallback: mostrar enlaces como texto
+                mostrarEnlacesComoTexto();
+            }
         }
 
-        function animate() {
-            drawConfetti();
-            requestAnimationFrame(animate);
+    function generarQRConCanvas(container, text, color) {
+        try {
+            const typeNumber = 0; // Auto
+            const errorCorrectionLevel = 'L';
+            const qr = qrcode(typeNumber, errorCorrectionLevel);
+            qr.addData(text);
+            qr.make();
+
+            const canvas = document.createElement('canvas');
+            const size = 130; // Tamaño fijo para que quepa en el contenedor
+            const cellSize = size / qr.getModuleCount();
+            const margin = 0;
+
+            canvas.width = size;
+            canvas.height = size;
+            canvas.style.maxWidth = '100%';
+            canvas.style.height = 'auto';
+
+            const ctx = canvas.getContext('2d');
+
+            // Fondo blanco
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Dibujar QR
+            ctx.fillStyle = color;
+            for (let row = 0; row < qr.getModuleCount(); row++) {
+                for (let col = 0; col < qr.getModuleCount(); col++) {
+                    if (qr.isDark(row, col)) {
+                        ctx.fillRect(
+                            margin + col * cellSize,
+                            margin + row * cellSize,
+                            cellSize,
+                            cellSize
+                        );
+                    }
+                }
+            }
+
+            container.appendChild(canvas);
+
+        } catch (error) {
+            console.error('Error generando QR con canvas:', error);
+            mostrarErrorQR(container);
         }
-        animate();
+    }
+
+        // Fallback: mostrar enlaces como texto si falla la generación de QR
+        function mostrarEnlacesComoTexto() {
+            const qrEncuesta = document.getElementById('qr-encuesta');
+            const qrAgradecimiento = document.getElementById('qr-agradecimiento');
+
+            if (qrEncuesta) {
+                qrEncuesta.innerHTML = `
+                    <div style="text-align: center; padding: 10px;">
+                        <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Encuesta:</div>
+                        <a href="${urlEncuesta}" style="font-size: 10px; word-break: break-all; color: #002776;">
+                            ${urlEncuesta}
+                        </a>
+                    </div>
+                `;
+            }
+
+            if (qrAgradecimiento) {
+                qrAgradecimiento.innerHTML = `
+                    <div style="text-align: center; padding: 10px;">
+                        <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Agradecimiento:</div>
+                        <a href="${urlAgradecimiento}" style="font-size: 10px; word-break: break-all; color: #009739;">
+                            ${urlAgradecimiento}
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        // Mostrar error si falla la generación de QR
+        function mostrarErrorQR(element) {
+            if (element && typeof element.innerHTML !== 'undefined') {
+                element.innerHTML = `
+                    <div style="color: #666; font-size: 12px; text-align: center; padding: 20px;">
+                        ❌ Error cargando QR<br>
+                        <a href="javascript:generarQRs()" style="color: #002776; font-size: 10px;">
+                            Reintentar
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        // Descargar QR individual
+        function descargarQR(url, nombre) {
+            if (!verificarQRCode()) {
+                alert('La función de QR no está disponible. Intenta recargar la página.');
+                return;
+            }
+
+            try {
+                const typeNumber = 0;
+                const errorCorrectionLevel = 'L';
+                const qr = qrcode(typeNumber, errorCorrectionLevel);
+                qr.addData(url);
+                qr.make();
+
+                const canvas = document.createElement('canvas');
+                const size = 300;
+                const cellSize = size / qr.getModuleCount();
+
+                canvas.width = size;
+                canvas.height = size;
+
+                const ctx = canvas.getContext('2d');
+
+                // Fondo blanco
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Dibujar QR
+                ctx.fillStyle = '#002776';
+                for (let row = 0; row < qr.getModuleCount(); row++) {
+                    for (let col = 0; col < qr.getModuleCount(); col++) {
+                        if (qr.isDark(row, col)) {
+                            ctx.fillRect(
+                                col * cellSize,
+                                row * cellSize,
+                                cellSize,
+                                cellSize
+                            );
+                        }
+                    }
+                }
+
+                const link = document.createElement('a');
+                link.download = `QR_${nombre}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+            } catch (error) {
+                console.error('Error descargando QR:', error);
+                alert('Error al descargar el QR. Intenta nuevamente.');
+            }
+        }
+
+        // Descargar ambos QRs
+        function descargarQRs() {
+            if (!verificarQRCode()) {
+                alert('La función de QR no está disponible. Intenta recargar la página.');
+                return;
+            }
+
+            descargarQR(urlEncuesta, 'Encuesta_Brasil');
+            setTimeout(() => {
+                descargarQR(urlAgradecimiento, 'Agradecimiento_Brasil');
+            }, 500);
+        }
+
+        // Compartir con QR
+        function compartirConQR() {
+            const mensaje = `¡Visita nuestro Stand de Brasil! 🇧🇷\n\n` +
+                `📝 Encuesta: ${urlEncuesta}\n` +
+                `🙏 Agradecimiento: ${urlAgradecimiento}\n\n` +
+                `#Fonoferiabrasil`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Stand Brasil - Fonoferia',
+                    text: mensaje,
+                    url: urlEncuesta
+                });
+            } else {
+                navigator.clipboard.writeText(mensaje).then(() => {
+                    alert('✅ Enlaces copiados al portapapeles. ¡Compártelos con tus amigos!');
+                }).catch(() => {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = mensaje;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('✅ Enlaces copiados al portapapeles. ¡Compártelos con tus amigos!');
+                });
+            }
+        }
+
+        // 🌈 Animación de confeti mejorada
+        function iniciarConfeti() {
+            const canvas = document.getElementById('confetti');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const confettiCount = 200;
+            const confetti = [];
+            const colors = ['#009739', '#FEDF00', '#002776', '#FFFFFF', '#FF6B6B'];
+
+            for (let i = 0; i < confettiCount; i++) {
+                confetti.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 8 + 3,
+                    d: Math.random() * confettiCount,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.floor(Math.random() * 10) - 10,
+                    tiltAngle: 0,
+                    tiltAngleIncrement: Math.random() * 0.1 + 0.05
+                });
+            }
+
+            function drawConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                confetti.forEach(p => {
+                    ctx.save();
+                    ctx.translate(p.x + p.tilt, p.y);
+                    ctx.rotate(p.tiltAngle);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r);
+                    ctx.restore();
+                });
+                updateConfetti();
+            }
+
+            function updateConfetti() {
+                confetti.forEach(p => {
+                    p.tiltAngle += p.tiltAngleIncrement;
+                    p.y += (Math.cos(p.d) + 1 + p.r / 2) * 0.5;
+                    p.x += Math.sin(p.d) * 2;
+                    p.tilt = Math.sin(p.tiltAngle) * 15;
+
+                    if (p.y > canvas.height) {
+                        p.x = Math.random() * canvas.width;
+                        p.y = -20;
+                        p.r = Math.random() * 8 + 3;
+                    }
+                });
+            }
+
+            function animate() {
+                drawConfetti();
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
 
         // Crear partículas brasileñas
         function crearParticulas() {
             const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+
             const colors = ['#009739', '#FEDF00', '#002776'];
 
             for (let i = 0; i < 30; i++) {
@@ -488,26 +390,25 @@
             }
         }
 
-        // Función para compartir
-        function compartir() {
-            if (navigator.share) {
-                navigator.share({
-                    title: '¡Visitá el Stand de Brasil! 🇧🇷',
-                    text: 'Acabo de vivir una experiencia increíble en el Stand de Brasil. ¡No te lo pierdas!',
-                    url: window.location.href
-                });
-            } else {
-                alert('¡Compartí tu experiencia con #Fonoferiabrasil! 🇧🇷');
-            }
-        }
+        // Inicializar todo cuando la página cargue
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOM cargado, inicializando efectos...');
+            crearParticulas();
+            iniciarConfeti();
 
-        // Inicializar efectos
-        crearParticulas();
+            // Esperar a que cargue la librería QR
+            setTimeout(() => {
+                generarQRs();
+            }, 1000);
+        });
 
         // Ajustar canvas al redimensionar
         window.addEventListener('resize', function () {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            const canvas = document.getElementById('confetti');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
         });
     </script>
 </body>
