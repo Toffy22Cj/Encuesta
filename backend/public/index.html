@@ -1,13 +1,15 @@
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
-  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Encuesta - Stand Brasil 🇧🇷</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
 
 <body>
   <!-- Fondo de estadio de fútbol -->
@@ -19,7 +21,7 @@
       <div class="grada-fila"></div>
       <div class="grada-fila"></div>
     </div>
-  
+
     <!-- Campo de fútbol -->
     <div class="cesped">
       <div class="lineas-campo">
@@ -30,7 +32,7 @@
         <div class="area-pequena izquierda"></div>
         <div class="area-pequena derecha"></div>
       </div>
-  
+
       <!-- Jugadores -->
       <div class="jugador casa"></div>
       <div class="jugador casa"></div>
@@ -42,24 +44,24 @@
       <div class="jugador visitante"></div>
       <div class="jugador visitante"></div>
       <div class="jugador visitante"></div>
-  
+
       <!-- Balón -->
       <div class="balon"></div>
     </div>
   </div>
-  
+
   <!-- Botones de idioma -->
   <div class="idioma-container">
     <button class="btn-idioma" onclick="cambiarIdioma('es')">ES</button>
     <button class="btn-idioma" onclick="cambiarIdioma('en')">EN</button>
     <button class="btn-idioma" onclick="cambiarIdioma('pt')">PT</button>
   </div>
-  
+
   <header>
     <h1 id="titulo-header">🇧🇷 Stand Brasil</h1>
     <p id="subtitulo-header">Tu opinión nos impulsa a mejorar 🌿✨</p>
   </header>
-  
+
   <main>
     <section class="info">
       <h2 id="titulo-bienvenida">¡Bem-vindo!</h2>
@@ -68,55 +70,76 @@
         de Brasil.
       </p>
     </section>
-  
+
     <section class="formulario" id="formSection">
       <h3 id="titulo-encuesta">Encuesta de Satisfacción</h3>
-  
+
       <!-- Formulario -->
       <form id="encuestaForm">
         <div class="input-group">
           <label for="nombre" id="label-nombre">Nombre completo</label>
           <input type="text" id="nombre" name="nombre" required />
         </div>
-  
+
         <div class="input-group">
           <label for="identificacion" id="label-identificacion">Identificación</label>
           <input type="text" id="identificacion" name="identificacion" required />
         </div>
-  
+
         <div class="input-group">
           <label for="programa" id="label-programa">Programa al que perteneces</label>
           <input type="text" id="programa" name="programa" required />
         </div>
-  
+
         <div class="input-group">
           <label for="opinion" id="label-opinion">¿Qué te pareció el stand?</label>
           <textarea id="opinion" name="opinion" rows="3" required></textarea>
         </div>
-  
+
         <button type="submit" id="btn-enviar">Enviar opinión</button>
       </form>
-  
+
       <!-- Mensaje temporal -->
       <div id="mensaje" class="hidden"></div>
-  
+
       <!-- Spinner de carga -->
       <div id="spinner" style="display: none;">
         <div class="spinner"></div>
         <p id="texto-carga">Enviando encuesta...</p>
       </div>
-  
+
       <!-- Respuesta después del envío -->
       <div id="respuesta"></div>
     </section>
-  
+
+    <!-- Referencias brasileñas -->
+    <div class="referencias-brasil">
+      <div class="referencia">
+        <div class="referencia-icono">🌴</div>
+        <div class="referencia-texto" id="ref-amazonas">Amazonas</div>
+      </div>
+      <div class="referencia">
+        <div class="referencia-icono">🏖️</div>
+        <div class="referencia-texto" id="ref-playas">Playas de Brasil</div>
+      </div>
+      <div class="referencia">
+        <div class="referencia-icono">⚽</div>
+        <div class="referencia-texto" id="ref-futbol">Fútbol Brasileño</div>
+      </div>
+      <div class="referencia">
+        <div class="referencia-icono">💃</div>
+        <div class="referencia-texto" id="ref-samba">Samba y Carnaval</div>
+      </div>
+      <div class="referencia">
+        <div class="referencia-icono">☕</div>
+        <div class="referencia-texto" id="ref-cafe">Café Brasileño</div>
+      </div>
+    </div>
   </main>
-  
+
   <footer>
     <p>💚💛💙 Desarrollado por el equipo del Stand Brasil y toffy</p>
   </footer>
-
-
 
   <script src="script.js"></script>
 </body>

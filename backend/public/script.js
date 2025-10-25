@@ -18,6 +18,11 @@ const textos = {
     refFutbol: "Fútbol Brasileño",
     refSamba: "Samba y Carnaval",
     refCafe: "Café Brasileño",
+    mensajeExito: "¡Gracias por tu opinión!",
+    mensajeError: "Error al enviar",
+    enviarOtra: "Enviar otra encuesta",
+    verAgradecimiento: "Ver Agradecimiento",
+    intentarNuevamente: "Intentar nuevamente",
   },
   en: {
     tituloHeader: "🇧🇷 Brazil Stand",
@@ -37,6 +42,11 @@ const textos = {
     refFutbol: "Brazilian Football",
     refSamba: "Samba and Carnival",
     refCafe: "Brazilian Coffee",
+    mensajeExito: "Thank you for your opinion!",
+    mensajeError: "Error sending",
+    enviarOtra: "Submit another survey",
+    verAgradecimiento: "View Appreciation",
+    intentarNuevamente: "Try again",
   },
   pt: {
     tituloHeader: "🇧🇷 Stand Brasil",
@@ -56,11 +66,20 @@ const textos = {
     refFutbol: "Futebol Brasileiro",
     refSamba: "Samba e Carnaval",
     refCafe: "Café Brasileiro",
+    mensajeExito: "Obrigado pela sua opinião!",
+    mensajeError: "Erro ao enviar",
+    enviarOtra: "Enviar outra pesquisa",
+    verAgradecimiento: "Ver Agradecimento",
+    intentarNuevamente: "Tentar novamente",
   },
 };
 
+// Variable para guardar el idioma actual
+let idiomaActual = "es";
+
 // Función para cambiar idioma
 function cambiarIdioma(idioma) {
+  idiomaActual = idioma;
   document.getElementById("titulo-header").textContent =
     textos[idioma].tituloHeader;
   document.getElementById("subtitulo-header").textContent =
@@ -204,10 +223,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let dotCount = 0;
     const loadingInterval = setInterval(() => {
       dotCount = (dotCount + 1) % 4;
-      boton.textContent = "Enviando" + ".".repeat(dotCount);
+      boton.textContent = textos[idiomaActual].btnEnviar + ".".repeat(dotCount);
     }, 400);
 
     form.style.opacity = "0.5";
+    spinner.style.display = "block";
 
     try {
       const response = await fetch(`${API_URL}/encuesta`, {
@@ -221,20 +241,21 @@ document.addEventListener("DOMContentLoaded", function () {
       if (result.success) {
         // Ocultar formulario y mostrar mensaje de éxito
         form.style.display = "none";
+        spinner.style.display = "none";
         respuestaDiv.innerHTML = `
-              <div class="success-message">
-                <h3>&#x2705; ¡Gracias por tu opinión!</h3>
-                <p>${result.message}</p>
-                <div style="margin-top: 20px;">
-                  <button onclick="location.reload()" class="btn-secondary">
-                    &#x1F4DD; Enviar otra encuesta
-                  </button>
-                  <button onclick="verAgradecimiento()" class="btn-primary" style="margin-left: 10px;">
-                    &#x1F389; Ver Agradecimiento
-                  </button>
-                </div>
-              </div>
-            `;
+          <div class="success-message">
+            <h3>&#x2705; ${textos[idiomaActual].mensajeExito}</h3>
+            <p>${result.message}</p>
+            <div style="margin-top: 20px;">
+              <button onclick="location.reload()" class="btn-secondary">
+                &#x1F4DD; ${textos[idiomaActual].enviarOtra}
+              </button>
+              <button onclick="verAgradecimiento()" class="btn-primary" style="margin-left: 10px;">
+                &#x1F389; ${textos[idiomaActual].verAgradecimiento}
+              </button>
+            </div>
+          </div>
+        `;
         lanzarConfeti();
       } else {
         if (result.message.includes("identificación")) {
@@ -245,24 +266,24 @@ document.addEventListener("DOMContentLoaded", function () {
         // Restaurar botón y formulario en caso de error de validación
         boton.disabled = false;
         form.style.opacity = "1";
+        spinner.style.display = "none";
       }
     } catch (error) {
       console.error("Error:", error);
       form.style.display = "none";
+      spinner.style.display = "none";
       respuestaDiv.innerHTML = `
-            <div class="error-message">
-              <h3>&#x274C; Error al enviar</h3>
-              <p>${
-                error.message || "Ocurrió un problema, intenta de nuevo."
-              }</p>
-              <button onclick="location.reload()" class="btn-secondary">
-                &#x1F504; Intentar nuevamente
-              </button>
-            </div>
-          `;
+        <div class="error-message">
+          <h3>&#x274C; ${textos[idiomaActual].mensajeError}</h3>
+          <p>${error.message || "Ocurrió un problema, intenta de nuevo."}</p>
+          <button onclick="location.reload()" class="btn-secondary">
+            &#x1F504; ${textos[idiomaActual].intentarNuevamente}
+          </button>
+        </div>
+      `;
     } finally {
       clearInterval(loadingInterval);
-      boton.textContent = "Enviar opinión";
+      boton.textContent = textos[idiomaActual].btnEnviar;
     }
   });
 
