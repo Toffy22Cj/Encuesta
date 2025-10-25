@@ -1,11 +1,11 @@
 // Textos en diferentes idiomas
 const textos = {
   es: {
-    tituloHeader: "🇧🇷 Stand Brasil",
+    tituloHeader: "🇧🇷 Carnaval Brasil",
     subtituloHeader: "Tu opinión nos impulsa a mejorar 🌿✨",
-    tituloBienvenida: "¡Bem-vindo!",
+    tituloBienvenida: "¡Bem-vindo al Carnaval!",
     textoBienvenida:
-      "Gracias por visitarnos. Completa esta breve encuesta y ayúdanos a seguir compartiendo la alegría y creatividad de Brasil.",
+      "Gracias por visitarnos. Completa esta breve encuesta y ayúdanos a seguir compartiendo la alegría, color y creatividad de Brasil.",
     tituloEncuesta: "Encuesta de Satisfacción",
     labelNombre: "Nombre completo",
     labelIdentificacion: "Identificación",
@@ -18,18 +18,18 @@ const textos = {
     refFutbol: "Fútbol Brasileño",
     refSamba: "Samba y Carnaval",
     refCafe: "Café Brasileño",
-    mensajeExito: "¡Gracias por tu opinión!",
+    mensajeExito: "¡Obrigado por tu opinión!",
     mensajeError: "Error al enviar",
     enviarOtra: "Enviar otra encuesta",
     verAgradecimiento: "Ver Agradecimiento",
     intentarNuevamente: "Intentar nuevamente",
   },
   en: {
-    tituloHeader: "🇧🇷 Brazil Stand",
+    tituloHeader: "🇧🇷 Brazil Carnival",
     subtituloHeader: "Your opinion drives us to improve 🌿✨",
-    tituloBienvenida: "Welcome!",
+    tituloBienvenida: "Welcome to Carnival!",
     textoBienvenida:
-      "Thank you for visiting us. Complete this short survey and help us continue sharing the joy and creativity of Brazil.",
+      "Thank you for visiting us. Complete this short survey and help us continue sharing the joy, color and creativity of Brazil.",
     tituloEncuesta: "Satisfaction Survey",
     labelNombre: "Full name",
     labelIdentificacion: "Identification",
@@ -49,11 +49,11 @@ const textos = {
     intentarNuevamente: "Try again",
   },
   pt: {
-    tituloHeader: "🇧🇷 Stand Brasil",
+    tituloHeader: "🇧🇷 Carnaval Brasil",
     subtituloHeader: "Sua opinião nos impulsiona a melhorar 🌿✨",
-    tituloBienvenida: "Bem-vindo!",
+    tituloBienvenida: "Bem-vindo ao Carnaval!",
     textoBienvenida:
-      "Obrigado por nos visitar. Complete esta breve pesquisa e ajude-nos a continuar compartilhando a alegria e criatividade do Brasil.",
+      "Obrigado por nos visitar. Complete esta breve pesquisa e ajude-nos a continuar compartilhando a alegria, cor e criatividade do Brasil.",
     tituloEncuesta: "Pesquisa de Satisfação",
     labelNombre: "Nome completo",
     labelIdentificacion: "Identificação",
@@ -109,7 +109,68 @@ function cambiarIdioma(idioma) {
   document.getElementById("ref-cafe").textContent = textos[idioma].refCafe;
 }
 
+// Función para crear confeti
+function crearConfeti() {
+  const contenedor = document.querySelector(".elementos-carnaval");
+  const colores = [
+    "#00A86B",
+    "#FFD700",
+    "#00A9E0",
+    "#FF6B35",
+    "#FF44CC",
+    "#8A2BE2",
+    "#40E0D0",
+    "#FF4500",
+  ];
+
+  for (let i = 0; i < 50; i++) {
+    const confeti = document.createElement("div");
+    confeti.className = "confeti";
+    confeti.style.left = Math.random() * 100 + "vw";
+    confeti.style.background =
+      colores[Math.floor(Math.random() * colores.length)];
+    confeti.style.animationDuration = Math.random() * 3 + 2 + "s";
+    confeti.style.animationDelay = Math.random() * 5 + "s";
+    contenedor.appendChild(confeti);
+  }
+}
+
+// Función para crear pájaros (guacamayos como en Río)
+function crearPajaros() {
+  const contenedor = document.querySelector(".elementos-carnaval");
+  for (let i = 0; i < 4; i++) {
+    const pajaro = document.createElement("div");
+    pajaro.className = "pajaro-rio";
+    pajaro.style.top = Math.random() * 50 + 10 + "vh";
+    pajaro.style.animationDelay = Math.random() * 10 + "s";
+    pajaro.style.animationDuration = Math.random() * 10 + 15 + "s";
+    contenedor.appendChild(pajaro);
+  }
+}
+
+// Función para crear máscaras de carnaval
+function crearMascaras() {
+  const contenedor = document.querySelector(".elementos-carnaval");
+  const mascaras = ["🎭", "😷", "🥸", "👺"];
+
+  for (let i = 0; i < 6; i++) {
+    const mascara = document.createElement("div");
+    mascara.className = "mascara";
+    mascara.textContent = mascaras[Math.floor(Math.random() * mascaras.length)];
+    mascara.style.left = Math.random() * 90 + 5 + "vw";
+    mascara.style.top = Math.random() * 80 + 10 + "vh";
+    mascara.style.animationDelay = Math.random() * 5 + "s";
+    mascara.style.fontSize = Math.random() * 1 + 1.5 + "rem";
+    contenedor.appendChild(mascara);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  // Crear elementos animados
+  crearConfeti();
+  crearPajaros();
+  crearMascaras();
+
   const form = document.getElementById("encuestaForm");
   const respuestaDiv = document.getElementById("respuesta");
   const spinner = document.getElementById("spinner");
@@ -256,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
           </div>
         `;
-        lanzarConfeti();
+        lanzarConfetiEspecial();
       } else {
         if (result.message.includes("identificación")) {
           mostrarError(identificacionInput, result.message);
@@ -291,13 +352,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputs = document.querySelectorAll("input, textarea");
   inputs.forEach((input) => {
     input.addEventListener("focus", function () {
-      this.style.boxShadow = "0 0 15px var(--amarillo-brasil)";
-      this.style.borderColor = "var(--amarillo-brasil)";
+      this.style.boxShadow =
+        "0 0 20px var(--amarillo-sol), 0 0 30px var(--naranja-pasion)";
+      this.style.borderColor = "var(--amarillo-sol)";
     });
 
     input.addEventListener("blur", function () {
       if (!this.classList.contains("error")) {
-        this.style.boxShadow = "none";
+        this.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.1)";
         this.style.borderColor = "transparent";
       }
     });
@@ -309,36 +371,47 @@ function verAgradecimiento() {
   window.location.href = "gracias.html";
 }
 
-// Función de confeti
-function lanzarConfeti() {
+// Función de confeti especial para éxito
+function lanzarConfetiEspecial() {
   const container = document.body;
-  const confettiCount = 150;
-  const colors = ["#009739", "#FEDF00", "#002776", "#FFFFFF", "#7DCE82"];
+  const confettiCount = 200;
+  const colors = [
+    "#00A86B",
+    "#FFD700",
+    "#00A9E0",
+    "#FF6B35",
+    "#FF44CC",
+    "#8A2BE2",
+    "#40E0D0",
+    "#FF4500",
+  ];
 
   for (let i = 0; i < confettiCount; i++) {
     const confetti = document.createElement("div");
     confetti.style.position = "absolute";
-    confetti.style.width = `${Math.random() * 10 + 5}px`;
+    confetti.style.width = `${Math.random() * 12 + 6}px`;
     confetti.style.height = confetti.style.width;
     confetti.style.backgroundColor =
       colors[Math.floor(Math.random() * colors.length)];
     confetti.style.top = `${Math.random() * 100}%`;
     confetti.style.left = `${Math.random() * 100}%`;
     confetti.style.opacity = "1";
+    confetti.style.borderRadius = "50%";
     confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-    confetti.style.transition = "transform 4s ease-out, opacity 4s ease-out";
+    confetti.style.transition = "transform 3s ease-out, opacity 3s ease-out";
     confetti.style.zIndex = "9999";
+    confetti.style.boxShadow = "0 0 5px rgba(255,255,255,0.5)";
     container.appendChild(confetti);
 
     setTimeout(() => {
       confetti.style.transform = `translateY(${window.innerHeight}px) rotate(${
-        Math.random() * 360 + 360
+        Math.random() * 720 + 360
       }deg)`;
       confetti.style.opacity = "0";
     }, 10);
 
     setTimeout(() => {
       confetti.remove();
-    }, 4000);
+    }, 3000);
   }
 }

@@ -1,15 +1,15 @@
-/* ===== Paleta de colores de Brasil ===== */
+/* ===== Paleta de colores Carnaval/Río ===== */
 :root {
-  --verde-brasil: #009739;
-  --amarillo-brasil: #fedf00;
-  --azul-brasil: #002776;
+  --verde-selva: #00a86b;
+  --amarillo-sol: #ffd700;
+  --azul-cielo: #00a9e0;
+  --naranja-pasion: #ff6b35;
+  --rosa-fiesta: #ff44cc;
+  --morado-magia: #8a2be2;
+  --turquesa-rio: #40e0d0;
+  --rojo-carnaval: #ff4500;
   --blanco: #ffffff;
-  --verde-claro: #7dce82;
-  --amarillo-claro: #ffe45c;
-  --azul-claro: #3a6ea5;
-  --dorado: #ffd700;
-  --verde-cesped: #2e8b57;
-  --verde-cesped-oscuro: #1e6b47;
+  --verde-oscuro: #009b7d;
 }
 
 /* ===== Reset ===== */
@@ -24,302 +24,132 @@ body {
   overflow-x: hidden;
   color: var(--blanco);
   position: relative;
-  background-color: var(--azul-brasil);
+  background: linear-gradient(135deg, var(--azul-cielo), var(--verde-selva));
   min-height: 100vh;
 }
 
-/* ===== Fondo de estadio de fútbol ===== */
-.bg-estadio {
+/* ===== Fondo Animado Carnaval ===== */
+.bg-carnaval {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, #1a5276, #2980b9);
-  z-index: -3;
-  overflow: hidden;
-}
-
-.cesped {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 70%;
   background: linear-gradient(
-    to bottom,
-    var(--verde-cesped),
-    var(--verde-cesped-oscuro)
+    45deg,
+    var(--azul-cielo),
+    var(--verde-selva),
+    var(--amarillo-sol),
+    var(--naranja-pasion),
+    var(--rosa-fiesta),
+    var(--morado-magia)
   );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  z-index: -3;
 }
 
-.lineas-campo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  height: 70%;
-  border: 3px solid var(--blanco);
-  border-radius: 20px;
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.linea-medio {
-  position: absolute;
+/* ===== Elementos Flotantes Carnaval ===== */
+.elementos-carnaval {
+  position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3px;
-  height: 100%;
-  background: var(--blanco);
-}
-
-.circulo-centro {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border: 3px solid var(--blanco);
-  border-radius: 50%;
-}
-
-.area-grande {
-  position: absolute;
-  width: 20%;
-  height: 70%;
-  border: 3px solid var(--blanco);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.area-grande.izquierda {
-  left: 0;
-  border-right: none;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
-
-.area-grande.derecha {
-  right: 0;
-  border-left: none;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
-
-.area-pequena {
-  position: absolute;
-  width: 10%;
-  height: 40%;
-  border: 3px solid var(--blanco);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.area-pequena.izquierda {
-  left: 0;
-  border-right: none;
-}
-
-.area-pequena.derecha {
-  right: 0;
-  border-left: none;
-}
-
-/* ===== Jugadores ===== */
-.jugador {
-  position: absolute;
-  width: 30px;
-  height: 60px;
-  z-index: -1;
-  animation: mover-jugador 15s infinite alternate;
-}
-
-.jugador.casa {
-  background: linear-gradient(to bottom, var(--amarillo-brasil), #e6c200);
-  border-radius: 50% 50% 40% 40%;
-}
-
-.jugador.visitante {
-  background: linear-gradient(to bottom, #8b0000, #600000);
-  border-radius: 50% 50% 40% 40%;
-}
-
-.jugador::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 5px;
-  width: 20px;
-  height: 20px;
-  background: #ffe0bd;
-  border-radius: 50%;
-}
-
-.jugador::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 5px;
-  width: 20px;
-  height: 30px;
-  background: inherit;
-}
-
-/* Posiciones de jugadores */
-.jugador:nth-child(1) {
-  top: 40%;
-  left: 20%;
-  animation-delay: 0s;
-}
-.jugador:nth-child(2) {
-  top: 60%;
-  left: 25%;
-  animation-delay: 1s;
-}
-.jugador:nth-child(3) {
-  top: 30%;
-  left: 35%;
-  animation-delay: 2s;
-}
-.jugador:nth-child(4) {
-  top: 50%;
-  left: 40%;
-  animation-delay: 3s;
-}
-.jugador:nth-child(5) {
-  top: 70%;
-  left: 45%;
-  animation-delay: 4s;
-}
-.jugador:nth-child(6) {
-  top: 40%;
-  right: 20%;
-  animation-delay: 0.5s;
-}
-.jugador:nth-child(7) {
-  top: 60%;
-  right: 25%;
-  animation-delay: 1.5s;
-}
-.jugador:nth-child(8) {
-  top: 30%;
-  right: 35%;
-  animation-delay: 2.5s;
-}
-.jugador:nth-child(9) {
-  top: 50%;
-  right: 40%;
-  animation-delay: 3.5s;
-}
-.jugador:nth-child(10) {
-  top: 70%;
-  right: 45%;
-  animation-delay: 4.5s;
-}
-
-/* ===== Balón ===== */
-.balon {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  background: white;
-  border-radius: 50%;
-  z-index: -1;
-  animation: mover-balon 8s infinite linear;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.balon::before,
-.balon::after {
-  content: "";
-  position: absolute;
-  background: black;
-}
-
-.balon::before {
-  top: 50%;
   left: 0;
   width: 100%;
-  height: 2px;
-  transform: translateY(-50%);
-}
-
-.balon::after {
-  left: 50%;
-  top: 0;
-  width: 2px;
   height: 100%;
-  transform: translateX(-50%);
-}
-
-/* ===== Gradas ===== */
-.gradas {
-  position: absolute;
-  bottom: 70%;
-  width: 100%;
-  height: 30%;
-  background: linear-gradient(to bottom, #7f8c8d, #95a5a6, #7f8c8d);
+  pointer-events: none;
   z-index: -2;
 }
 
-.grada-fila {
+.confeti {
   position: absolute;
-  width: 100%;
-  height: 10px;
-  background: #34495e;
+  width: 8px;
+  height: 8px;
+  opacity: 0.8;
+  animation: caerConfeti linear infinite;
 }
 
-.grada-fila:nth-child(1) {
-  bottom: 0;
-}
-.grada-fila:nth-child(2) {
-  bottom: 15px;
-}
-.grada-fila:nth-child(3) {
-  bottom: 30px;
-}
-.grada-fila:nth-child(4) {
-  bottom: 45px;
+@keyframes caerConfeti {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
-/* ===== Animaciones ===== */
-@keyframes mover-jugador {
+/* ===== Pájaros Río (Guacamayos) ===== */
+.pajaro-rio {
+  position: fixed;
+  width: 40px;
+  height: 30px;
+  z-index: -1;
+  animation: volarRio 20s linear infinite;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.pajaro-rio::before {
+  content: "🦜";
+  font-size: 2rem;
+  animation: aletear 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes volarRio {
+  0% {
+    transform: translateX(-100px) translateY(100px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(25vw) translateY(50px) rotate(5deg);
+  }
+  50% {
+    transform: translateX(50vw) translateY(150px) rotate(0deg);
+  }
+  75% {
+    transform: translateX(75vw) translateY(80px) rotate(-5deg);
+  }
+  100% {
+    transform: translateX(100vw) translateY(100px) rotate(0deg);
+  }
+}
+
+@keyframes aletear {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(1.1);
+  }
+}
+
+/* ===== Máscaras Flotantes ===== */
+.mascara {
+  position: fixed;
+  font-size: 2rem;
+  opacity: 0.7;
+  animation: flotarMascara 8s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes flotarMascara {
   0%,
   100% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(20px, -10px);
+    transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translate(-15px, 15px);
-  }
-  75% {
-    transform: translate(10px, -5px);
-  }
-}
-
-@keyframes mover-balon {
-  0% {
-    top: 45%;
-    left: 30%;
-  }
-  25% {
-    top: 55%;
-    left: 50%;
-  }
-  50% {
-    top: 40%;
-    left: 70%;
-  }
-  75% {
-    top: 60%;
-    left: 50%;
-  }
-  100% {
-    top: 45%;
-    left: 30%;
+    transform: translateY(-20px) rotate(10deg);
   }
 }
 
@@ -336,7 +166,7 @@ body {
 .btn-idioma {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  border: 2px solid var(--amarillo-brasil);
+  border: 2px solid var(--amarillo-sol);
   color: var(--blanco);
   padding: 8px 15px;
   border-radius: 20px;
@@ -346,43 +176,59 @@ body {
 }
 
 .btn-idioma:hover {
-  background: var(--amarillo-brasil);
-  color: var(--azul-brasil);
+  background: var(--amarillo-sol);
+  color: var(--azul-cielo);
   transform: scale(1.05);
+  box-shadow: 0 0 15px var(--amarillo-sol);
 }
 
 /* ===== Encabezado ===== */
 header {
   text-align: center;
   padding: 2.5rem 1rem;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  border-bottom: 3px solid var(--amarillo-brasil);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-bottom: 3px solid var(--amarillo-sol);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   position: relative;
+  margin-bottom: 2rem;
 }
 
 header h1 {
-  font-size: 2.8rem;
+  font-size: 3rem;
   font-weight: 800;
   background: linear-gradient(
-    90deg,
-    var(--verde-brasil),
-    var(--amarillo-brasil),
-    var(--azul-brasil)
+    45deg,
+    var(--amarillo-sol),
+    var(--naranja-pasion),
+    var(--rosa-fiesta),
+    var(--azul-cielo),
+    var(--verde-selva)
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  background-size: 200% 200%;
-  animation: aparecer 1.2s ease forwards, shimmer 5s ease infinite;
+  background-size: 300% 300%;
+  animation: tituloArcoiris 3s ease infinite;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes tituloArcoiris {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 header p {
   color: var(--blanco);
   margin-top: 0.5rem;
-  font-size: 1.1rem;
-  animation: aparecer 1.8s ease forwards;
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* ===== Sección info ===== */
@@ -395,60 +241,120 @@ main {
 
 .info {
   text-align: center;
-  max-width: 650px;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 2rem;
-  margin-bottom: 2.5rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  border: 1px solid var(--amarillo-brasil);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.info:hover::before {
+  left: 100%;
 }
 
 .info:hover {
-  transform: scale(1.05) rotate(-1deg);
-  box-shadow: 0 8px 30px rgba(254, 223, 0, 0.3);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.2);
 }
 
 .info h2 {
-  color: var(--amarillo-brasil);
-  margin-bottom: 0.75rem;
-  font-size: 1.8rem;
+  color: var(--amarillo-sol);
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .info p {
   color: var(--blanco);
-  line-height: 1.6;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== Formulario ===== */
 .formulario {
   background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  padding: 2.5rem;
-  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  padding: 3rem;
+  border-radius: 25px;
   width: 90%;
-  max-width: 650px;
-  border: 1px solid var(--amarillo-brasil);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 700px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.formulario::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--amarillo-sol),
+    var(--naranja-pasion),
+    var(--rosa-fiesta),
+    var(--azul-cielo),
+    var(--verde-selva)
+  );
+  background-size: 200% 100%;
+  animation: bordeArcoiris 2s linear infinite;
+}
+
+@keyframes bordeArcoiris {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .formulario:hover {
   transform: translateY(-8px);
-  box-shadow: 0 10px 35px rgba(254, 223, 0, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 105, 180, 0.3);
 }
 
 .formulario h3 {
   text-align: center;
-  margin-bottom: 2rem;
-  color: var(--amarillo-brasil);
-  font-size: 1.6rem;
+  margin-bottom: 2.5rem;
+  color: var(--amarillo-sol);
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .input-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -457,52 +363,90 @@ main {
 label {
   font-weight: 600;
   color: var(--blanco);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
   font-size: 1.1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 input,
 textarea {
   border: 2px solid transparent;
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: 15px;
+  padding: 1.2rem;
   font-size: 1rem;
-  color: #222;
-  background: rgba(255, 255, 255, 0.9);
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  color: #333;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 input:focus,
 textarea:focus {
-  box-shadow: 0 0 15px var(--amarillo-brasil);
-  border-color: var(--amarillo-brasil);
+  box-shadow: 0 0 20px var(--amarillo-sol), 0 0 30px var(--naranja-pasion),
+    inset 0 0 10px rgba(255, 255, 255, 0.5);
+  border-color: var(--amarillo-sol);
   outline: none;
+  transform: scale(1.02);
 }
 
-/* Botón con tema brasileño */
+/* Botón con tema Carnaval */
 button {
   width: 100%;
   background: linear-gradient(
-    90deg,
-    var(--verde-brasil),
-    var(--amarillo-brasil)
+    45deg,
+    var(--amarillo-sol),
+    var(--naranja-pasion),
+    var(--rojo-carnaval)
   );
-  color: var(--azul-brasil);
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
+  color: var(--blanco);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   border: none;
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: 15px;
+  padding: 1.3rem;
   font-weight: bold;
   cursor: pointer;
   font-size: 1.2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: pulse 2.5s infinite;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+  animation: pulseBtn 2s infinite;
+}
+
+@keyframes pulseBtn {
+  0%,
+  100% {
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+  }
+  50% {
+    box-shadow: 0 6px 30px rgba(255, 107, 53, 0.8), 0 0 20px var(--amarillo-sol);
+  }
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
 }
 
 button:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(254, 223, 0, 0.5);
   animation-play-state: paused;
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6), 0 0 30px var(--amarillo-sol);
 }
 
 button:disabled {
@@ -516,51 +460,31 @@ button:disabled {
   margin-top: 1rem;
   text-align: center;
   font-weight: bold;
-  color: var(--amarillo-brasil);
+  color: var(--amarillo-sol);
   transition: opacity 0.5s ease;
 }
 
 /* ===== Footer ===== */
 footer {
   text-align: center;
-  padding: 1.5rem;
-  background: rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.3);
   color: var(--blanco);
-  font-size: 0.9rem;
-  margin-top: 3rem;
-  border-top: 2px solid var(--verde-brasil);
+  font-size: 1rem;
+  margin-top: 4rem;
+  border-top: 2px solid var(--amarillo-sol);
+  backdrop-filter: blur(10px);
 }
 
 /* ===== ANIMACIONES GENERALES ===== */
 @keyframes aparecer {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes shimmer {
-  from {
-    background-position: 200% center;
-  }
-  to {
-    background-position: -200% center;
-  }
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(254, 223, 0, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(254, 223, 0, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(254, 223, 0, 0);
   }
 }
 
@@ -575,7 +499,7 @@ footer {
 
 /* ===== Estilos para errores de validación ===== */
 .input-error {
-  color: #ff5252;
+  color: #ff6b6b;
   font-size: 14px;
   margin-top: 8px;
   display: flex;
@@ -583,12 +507,13 @@ footer {
   gap: 8px;
   font-weight: 500;
   animation: fadeIn 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .input-group input.error,
 .input-group textarea.error {
-  border-color: #ff5252 !important;
-  box-shadow: 0 0 10px rgba(255, 82, 82, 0.5) !important;
+  border-color: #ff6b6b !important;
+  box-shadow: 0 0 15px #ff6b6b, 0 0 25px rgba(255, 107, 107, 0.5) !important;
   animation: shake 0.5s ease;
 }
 
@@ -598,10 +523,10 @@ footer {
     transform: translateX(0);
   }
   25% {
-    transform: translateX(-6px);
+    transform: translateX(-8px);
   }
   75% {
-    transform: translateX(6px);
+    transform: translateX(8px);
   }
 }
 
@@ -609,59 +534,64 @@ footer {
 .success-message,
 .error-message {
   text-align: center;
-  padding: 2rem;
-  border-radius: 16px;
+  padding: 2.5rem;
+  border-radius: 20px;
   animation: fadeIn 0.5s ease;
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .success-message {
-  background-color: rgba(0, 151, 57, 0.3);
-  border: 1px solid var(--verde-brasil);
+  background: rgba(0, 168, 107, 0.3);
+  border-color: var(--verde-selva);
+  box-shadow: 0 8px 32px rgba(0, 168, 107, 0.3);
 }
 
 .error-message {
-  background-color: rgba(255, 82, 82, 0.3);
-  border: 1px solid #ff5252;
+  background: rgba(255, 107, 107, 0.3);
+  border-color: #ff6b6b;
+  box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
 }
 
 .btn-primary,
 .btn-secondary {
   border: none;
-  border-radius: 12px;
-  padding: 0.8rem 1.5rem;
+  border-radius: 15px;
+  padding: 1rem 2rem;
   font-weight: bold;
   cursor: pointer;
   font-size: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  margin: 0.5rem;
 }
 
 .btn-primary {
   background: linear-gradient(
-    90deg,
-    var(--verde-brasil),
-    var(--amarillo-brasil)
+    45deg,
+    var(--amarillo-sol),
+    var(--naranja-pasion)
   );
-  color: var(--azul-brasil);
+  color: var(--blanco);
 }
 
 .btn-primary:hover,
 .btn-secondary:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(254, 223, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
 }
 
 .btn-secondary {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   color: var(--blanco);
-  border: 1px solid var(--amarillo-brasil);
+  border: 2px solid var(--amarillo-sol);
 }
 
 /* ===== Referencias brasileñas ===== */
 .referencias-brasil {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-top: 2rem;
+  gap: 25px;
+  margin-top: 3rem;
   flex-wrap: wrap;
 }
 
@@ -669,37 +599,44 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-  padding: 15px;
-  border-radius: 15px;
-  border: 1px solid var(--amarillo-brasil);
-  transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  min-width: 140px;
 }
 
 .referencia:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 20px var(--amarillo-sol);
+  border-color: var(--amarillo-sol);
 }
 
 .referencia-icono {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .referencia-texto {
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-align: center;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Spinner */
 .spinner {
   border: 4px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top: 4px solid var(--amarillo-brasil);
-  width: 40px;
-  height: 40px;
+  border-top: 4px solid var(--amarillo-sol);
+  width: 50px;
+  height: 50px;
   animation: spin 1s linear infinite;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 0 10px var(--amarillo-sol);
 }
 
 @keyframes spin {
@@ -722,7 +659,7 @@ footer {
   }
 
   .formulario {
-    padding: 1.5rem;
+    padding: 2rem;
   }
 
   .info,
@@ -740,29 +677,28 @@ footer {
     font-size: 0.9rem;
   }
 
-  .jugador {
-    width: 20px;
-    height: 40px;
-  }
-
-  .balon {
-    width: 20px;
-    height: 20px;
-  }
-
   .referencias-brasil {
-    gap: 10px;
+    gap: 15px;
   }
 
   .referencia {
-    padding: 10px;
+    padding: 15px;
+    min-width: 120px;
   }
 
   .referencia-icono {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .referencia-texto {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .pajaro-rio {
+    width: 30px;
+  }
+
+  .pajaro-rio::before {
+    font-size: 1.5rem;
   }
 }
