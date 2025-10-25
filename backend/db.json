@@ -1,0 +1,28 @@
+{
+  "encuestas": [
+    {
+      "id": "1761356547645",
+      "nombre": "carlos",
+      "identificacion": "1234567789",
+      "programa": "hola",
+      "opinion": "prueba",
+      "fecha": "2025-10-25T01:42:27.645Z"
+    },
+    {
+      "id": "1761357087106",
+      "nombre": "carlos",
+      "identificacion": "123445677",
+      "programa": "prueba",
+      "opinion": "bueno",
+      "fecha": "2025-10-25T01:51:27.106Z"
+    },
+    {
+      "id": "1761357330507",
+      "nombre": "Carlos",
+      "identificacion": "1103949065",
+      "programa": "bueno",
+      "opinion": "nueno",
+      "fecha": "2025-10-25T01:55:30.507Z"
+    }
+  ]
+}
