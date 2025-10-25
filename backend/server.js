@@ -12,7 +12,10 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("./public")); // Sirve archivos estáticos
-
+// Página del panel admin
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/admin.html"));
+});
 // Archivo para guardar respuestas
 const DATA_FILE = path.join(__dirname, "db.json");
 
