@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("../frontend")); // Sirve archivos estáticos
+app.use(express.static("./public")); // Sirve archivos estáticos
 
 // Archivo para guardar respuestas
 const DATA_FILE = path.join(__dirname, "db.json");
