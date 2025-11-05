@@ -1,514 +1,561 @@
+// script.js - Versión corregida y unificada
+
+// ========== CONFIGURACIÓN INICIAL ==========
+const audio = document.getElementById("sonidoSelva");
+const sonidoBtn = document.getElementById("sonidoBtn");
+const form = document.getElementById("encuestaForm");
+const mensaje = document.getElementById("mensaje");
+const submitBtn = document.getElementById("submitBtn");
+
+// URL de Instagram
+const urlInstagram =
+  "https://www.instagram.com/fonoaudiologia_uds?igsh=MTZldTQ1cmU5ZGVmMQ%3D%3D&utm_source=qr";
+
 // Textos en diferentes idiomas
 const textos = {
   es: {
-    tituloHeader: "🇧🇷 Carnaval Brasil",
-    subtituloHeader: "Tu opinión nos impulsa a mejorar 🌿✨",
-    tituloBienvenida: "¡Bem-vindo al Carnaval!",
+    tituloHeader: "🌿 Encuesta Amazónica 🇧🇷",
+    subtituloHeader: "Sumérgete en la biodiversidad del Amazonas",
+    tituloBienvenida: "¡Bem-vindo à Amazônia!",
     textoBienvenida:
-      "Gracias por visitarnos. Completa esta breve encuesta y ayúdanos a seguir compartiendo la alegría, color y creatividad de Brasil.",
-    tituloEncuesta: "Encuesta de Satisfacción",
+      "Como la selva tropical más grande del mundo, el Amazonas brasileño alberga una increíble diversidad de vida. Ayúdanos a proteger este tesoro natural compartiendo tu experiencia en nuestro stand.",
+    tituloEncuesta: "Encuesta Amazónica",
     labelNombre: "Nombre completo *",
-    labelIdentificacion: "Identificación *",
+    labelIdentificacion: "Número de identificación *",
     labelCorreo: "Correo electrónico *",
     labelTelefono: "Teléfono *",
-    labelPrograma: "Programa al que perteneces *",
-    labelOpinion: "¿Qué te pareció el stand? *",
+    labelPrograma: "Programa académico *",
+    labelOpinion: "¿Qué te pareció nuestro stand amazónico? *",
     btnEnviar: "Enviar opinión",
     textoCarga: "Enviando encuesta...",
-    refAmazonas: "Amazonas",
-    refPlayas: "Playas de Brasil",
-    refFutbol: "Fútbol Brasileño",
-    refSamba: "Samba y Carnaval",
-    refCafe: "Café Brasileño",
-    mensajeExito: "¡Obrigado por tu opinión!",
+    mensajeExito:
+      "🌿 ¡Gracias por tu opinión sobre el Amazonas! Tu contribución ayuda a preservar este tesoro natural.",
     mensajeError: "Error al enviar",
     enviarOtra: "Enviar otra encuesta",
     verAgradecimiento: "Ver Agradecimiento",
-    intentarNuevamente: "Intentar nuevamente",
+    verGaleria: "Ver Galería",
+    seguirInstagram: "Seguir en Instagram",
+    tituloGaleria: "📸 Galería del Evento",
+    textoGaleria: "¡Mira las fotos de nuestro stand y síguenos en Instagram!",
   },
   en: {
-    tituloHeader: "🇧🇷 Brazil Carnival",
-    subtituloHeader: "Your opinion drives us to improve 🌿✨",
-    tituloBienvenida: "Welcome to Carnival!",
+    tituloHeader: "🌿 Amazon Survey 🇧🇷",
+    subtituloHeader: "Immerse yourself in Amazon biodiversity",
+    tituloBienvenida: "Welcome to the Amazon!",
     textoBienvenida:
-      "Thank you for visiting us. Complete this short survey and help us continue sharing the joy, color and creativity of Brazil.",
-    tituloEncuesta: "Satisfaction Survey",
+      "As the world's largest tropical rainforest, the Brazilian Amazon hosts an incredible diversity of life. Help us protect this natural treasure by sharing your experience at our stand.",
+    tituloEncuesta: "Amazon Survey",
     labelNombre: "Full name *",
-    labelIdentificacion: "Identification *",
+    labelIdentificacion: "Identification number *",
     labelCorreo: "Email *",
     labelTelefono: "Phone *",
-    labelPrograma: "Program you belong to *",
-    labelOpinion: "What did you think of the stand? *",
+    labelPrograma: "Academic program *",
+    labelOpinion: "What did you think of our Amazon stand? *",
     btnEnviar: "Submit opinion",
     textoCarga: "Sending survey...",
-    refAmazonas: "Amazon",
-    refPlayas: "Brazilian Beaches",
-    refFutbol: "Brazilian Football",
-    refSamba: "Samba and Carnival",
-    refCafe: "Brazilian Coffee",
-    mensajeExito: "Thank you for your opinion!",
+    mensajeExito:
+      "🌿 Thank you for your opinion about the Amazon! Your contribution helps preserve this natural treasure.",
     mensajeError: "Error sending",
     enviarOtra: "Submit another survey",
     verAgradecimiento: "View Appreciation",
-    intentarNuevamente: "Try again",
+    verGaleria: "View Gallery",
+    seguirInstagram: "Follow on Instagram",
+    tituloGaleria: "📸 Event Gallery",
+    textoGaleria: "Check out our stand photos and follow us on Instagram!",
   },
   pt: {
-    tituloHeader: "🇧🇷 Carnaval Brasil",
-    subtituloHeader: "Sua opinião nos impulsiona a melhorar 🌿✨",
-    tituloBienvenida: "Bem-vindo ao Carnaval!",
+    tituloHeader: "🌿 Pesquisa Amazônica 🇧🇷",
+    subtituloHeader: "Mergulhe na biodiversidade da Amazônia",
+    tituloBienvenida: "Bem-vindo à Amazônia!",
     textoBienvenida:
-      "Obrigado por nos visitar. Complete esta breve pesquisa e ajude-nos a continuar compartilhando a alegria, cor e criatividade do Brasil.",
-    tituloEncuesta: "Pesquisa de Satisfação",
+      "Como a maior floresta tropical do mundo, a Amazônia brasileira abriga uma incrível diversidade de vida. Ajude-nos a proteger este tesouro natural compartilhando sua experiência em nosso estande.",
+    tituloEncuesta: "Pesquisa Amazônica",
     labelNombre: "Nome completo *",
-    labelIdentificacion: "Identificação *",
+    labelIdentificacion: "Número de identificação *",
     labelCorreo: "E-mail *",
     labelTelefono: "Telefone *",
-    labelPrograma: "Programa ao qual pertence *",
-    labelOpinion: "O que você achou do estande? *",
+    labelPrograma: "Programa acadêmico *",
+    labelOpinion: "O que você achou do nosso estande amazônico? *",
     btnEnviar: "Enviar opinião",
     textoCarga: "Enviando pesquisa...",
-    refAmazonas: "Amazônia",
-    refPlayas: "Praias do Brasil",
-    refFutbol: "Futebol Brasileiro",
-    refSamba: "Samba e Carnaval",
-    refCafe: "Café Brasileiro",
-    mensajeExito: "Obrigado pela sua opinião!",
+    mensajeExito:
+      "🌿 Obrigado pela sua opinião sobre a Amazônia! Sua contribuição ajuda a preservar este tesouro natural.",
     mensajeError: "Erro ao enviar",
     enviarOtra: "Enviar outra pesquisa",
     verAgradecimiento: "Ver Agradecimento",
-    intentarNuevamente: "Tentar novamente",
+    verGaleria: "Ver Galeria",
+    seguirInstagram: "Seguir no Instagram",
+    tituloGaleria: "📸 Galeria do Evento",
+    textoGaleria: "Veja as fotos do nosso estande e siga-nos no Instagram!",
   },
 };
 
-// Variable para guardar el idioma actual
 let idiomaActual = "es";
 
-// Función para cambiar idioma
+// ========== INICIALIZACIÓN ==========
+document.addEventListener("DOMContentLoaded", function () {
+  inicializarSonido();
+  inicializarFormulario();
+  crearElementosAnimados();
+  aplicarIdioma(idiomaActual);
+});
+
+// ========== FUNCIONES INSTAGRAM ==========
+function verGaleriaInstagram() {
+  window.open(urlInstagram, "_blank");
+}
+
+function seguirInstagram() {
+  const instagramUrl = "instagram://user?username=fonoaudiologia_uds";
+  window.location.href = instagramUrl;
+
+  // Fallback para navegadores que no soportan deep linking
+  setTimeout(() => {
+    window.open(urlInstagram, "_blank");
+  }, 500);
+}
+
+// ========== SISTEMA DE SONIDO ==========
+function inicializarSonido() {
+  if (!audio || !sonidoBtn) return;
+
+  audio.volume = 0.3;
+
+  // Intentar reproducción automática
+  window.addEventListener("DOMContentLoaded", () => {
+    audio.play().catch((e) => {
+      console.log("Reproducción automática bloqueada:", e);
+      if (sonidoBtn) sonidoBtn.textContent = "🔇";
+    });
+  });
+
+  // Control de sonido con botón
+  sonidoBtn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+      sonidoBtn.textContent = "🔊";
+    } else {
+      audio.pause();
+      sonidoBtn.textContent = "🔇";
+    }
+  });
+
+  // Activar sonido al hacer clic en la página
+  document.body.addEventListener("click", () => {
+    if (audio.paused) {
+      audio
+        .play()
+        .then(() => {
+          if (sonidoBtn) sonidoBtn.textContent = "🔊";
+        })
+        .catch(console.error);
+    }
+  });
+}
+
+// ========== SISTEMA DE IDIOMAS ==========
 function cambiarIdioma(idioma) {
   idiomaActual = idioma;
-  document.getElementById("titulo-header").textContent =
-    textos[idioma].tituloHeader;
-  document.getElementById("subtitulo-header").textContent =
-    textos[idioma].subtituloHeader;
-  document.getElementById("titulo-bienvenida").textContent =
-    textos[idioma].tituloBienvenida;
-  document.getElementById("texto-bienvenida").textContent =
-    textos[idioma].textoBienvenida;
-  document.getElementById("titulo-encuesta").textContent =
-    textos[idioma].tituloEncuesta;
-  document.getElementById("label-nombre").textContent =
-    textos[idioma].labelNombre;
-  document.getElementById("label-identificacion").textContent =
-    textos[idioma].labelIdentificacion;
-  document.getElementById("label-correo").textContent =
-    textos[idioma].labelCorreo;
-  document.getElementById("label-telefono").textContent =
-    textos[idioma].labelTelefono;
-  document.getElementById("label-programa").textContent =
-    textos[idioma].labelPrograma;
-  document.getElementById("label-opinion").textContent =
-    textos[idioma].labelOpinion;
-  document.getElementById("btn-enviar").textContent = textos[idioma].btnEnviar;
-  document.getElementById("texto-carga").textContent =
-    textos[idioma].textoCarga;
+  aplicarIdioma(idioma);
+
+  // Guardar preferencia
+  localStorage.setItem("idiomaPreferido", idioma);
 }
 
-// Función para validar correo electrónico
-function validarCorreo(correo) {
+function aplicarIdioma(idioma) {
+  const t = textos[idioma];
+
+  // Actualizar elementos del header
+  const tituloHeader = document.querySelector("header h1");
+  const subtituloHeader = document.querySelector("header p");
+  const tituloBienvenida = document.querySelector(".info h2");
+  const textoBienvenida = document.querySelector(".info p");
+  const tituloEncuesta = document.querySelector(".form-header h2");
+
+  if (tituloHeader) tituloHeader.textContent = t.tituloHeader;
+  if (subtituloHeader) subtituloHeader.textContent = t.subtituloHeader;
+  if (tituloBienvenida) tituloBienvenida.textContent = t.tituloBienvenida;
+  if (textoBienvenida) textoBienvenida.textContent = t.textoBienvenida;
+  if (tituloEncuesta) tituloEncuesta.textContent = t.tituloEncuesta;
+
+  // Actualizar labels del formulario
+  const labels = {
+    'label[for="nombre"]': t.labelNombre,
+    'label[for="identificacion"]': t.labelIdentificacion,
+    'label[for="email"]': t.labelCorreo,
+    'label[for="telefono"]': t.labelTelefono,
+    'label[for="programa"]': t.labelPrograma,
+    'label[for="opinion"]': t.labelOpinion,
+  };
+
+  Object.entries(labels).forEach(([selector, texto]) => {
+    const element = document.querySelector(selector);
+    if (element) element.textContent = texto;
+  });
+
+  // Actualizar botón de envío
+  if (submitBtn) {
+    const btnText = submitBtn.querySelector(".btn-text");
+    if (btnText) btnText.textContent = t.btnEnviar;
+  }
+
+  // Actualizar sección de galería
+  const tituloGaleria = document.querySelector(".galeria-instagram h3");
+  const textoGaleria = document.querySelector(".galeria-instagram p");
+  const botonGaleria = document.querySelector(".btn-galeria .btn-text");
+  const botonSeguir = document.querySelector(".btn-seguir .btn-text");
+
+  if (tituloGaleria) tituloGaleria.textContent = t.tituloGaleria;
+  if (textoGaleria) textoGaleria.textContent = t.textoGaleria;
+  if (botonGaleria) botonGaleria.textContent = t.verGaleria;
+  if (botonSeguir) botonSeguir.textContent = t.seguirInstagram;
+}
+
+// ========== MANEJO DEL FORMULARIO ==========
+function inicializarFormulario() {
+  if (!form) return;
+
+  form.addEventListener("submit", manejarEnvioFormulario);
+
+  // Validación en tiempo real
+  const emailInput = document.getElementById("email");
+  if (emailInput) {
+    emailInput.addEventListener("blur", validarEmail);
+  }
+
+  const telefonoInput = document.getElementById("telefono");
+  if (telefonoInput) {
+    telefonoInput.addEventListener("blur", validarTelefono);
+  }
+}
+
+function validarEmail() {
+  const emailInput = document.getElementById("email");
+  if (!emailInput) return;
+
+  const email = emailInput.value.trim();
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(correo);
+
+  if (email && !regex.test(email)) {
+    mostrarError(emailInput, "Por favor ingresa un correo electrónico válido");
+    return false;
+  }
+
+  limpiarError(emailInput);
+  return true;
 }
 
-// Función para validar teléfono (permite formatos internacionales)
-function validarTelefono(telefono) {
+function validarTelefono() {
+  const telefonoInput = document.getElementById("telefono");
+  if (!telefonoInput) return true;
+
+  const telefono = telefonoInput.value.trim().replace(/\s/g, "");
   const regex = /^[\+]?[0-9\s\-\(\)]{7,15}$/;
-  return regex.test(telefono.replace(/\s/g, ""));
+
+  if (telefono && !regex.test(telefono)) {
+    mostrarError(
+      telefonoInput,
+      "Por favor ingresa un número de teléfono válido"
+    );
+    return false;
+  }
+
+  limpiarError(telefonoInput);
+  return true;
 }
 
-// Función para crear confeti
-function crearConfeti() {
-  const contenedor = document.querySelector(".elementos-carnaval");
-  const colores = [
-    "#00A86B",
-    "#FFD700",
-    "#00A9E0",
-    "#FF6B35",
-    "#FF44CC",
-    "#8A2BE2",
-    "#40E0D0",
-    "#FF4500",
-  ];
+function manejarEnvioFormulario(e) {
+  e.preventDefault();
 
-  for (let i = 0; i < 50; i++) {
+  // Validaciones básicas
+  if (!validarEmail() || !validarTelefono()) return;
+
+  // Obtener datos del formulario
+  const datos = {
+    nombre: document.getElementById("nombre").value.trim(),
+    identificacion: document.getElementById("identificacion").value.trim(),
+    correo: document.getElementById("email").value.trim(),
+    telefono: document.getElementById("telefono").value.trim(),
+    programa: document.getElementById("programa").value.trim(),
+    opinion: document.getElementById("opinion").value.trim(),
+  };
+
+  // Validar que todos los campos estén completos
+  for (const [key, value] of Object.entries(datos)) {
+    if (!value) {
+      mostrarErrorFormulario(`Por favor completa el campo: ${key}`);
+      return;
+    }
+  }
+
+  // Mostrar estado de carga
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML =
+      '<span class="btn-text">' +
+      textos[idiomaActual].textoCarga +
+      '</span><span class="btn-icon">⏳</span>';
+  }
+
+  // Enviar datos al servidor
+  enviarEncuesta(datos);
+}
+
+// Función para enviar datos al servidor
+async function enviarEncuesta(datos) {
+  try {
+    const response = await fetch("/api/encuesta", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(datos),
+    });
+
+    const resultado = await response.json();
+
+    if (resultado.success) {
+      // Redirigir a la página de agradecimiento
+      window.location.href = "gracias.html";
+    } else {
+      mostrarErrorFormulario(resultado.message);
+      restaurarBoton();
+    }
+  } catch (error) {
+    console.error("Error al enviar encuesta:", error);
+    mostrarErrorFormulario("Error de conexión. Intenta nuevamente.");
+    restaurarBoton();
+  }
+}
+
+// Función para mostrar errores del formulario
+function mostrarErrorFormulario(mensaje) {
+  if (!mensaje) return;
+
+  mensaje.textContent = mensaje;
+  mensaje.className = "mensaje error";
+
+  // Auto-ocultar después de 5 segundos
+  setTimeout(() => {
+    mensaje.textContent = "";
+    mensaje.className = "mensaje";
+  }, 5000);
+}
+
+function restaurarBoton() {
+  if (!submitBtn) return;
+
+  submitBtn.disabled = false;
+  submitBtn.innerHTML =
+    '<span class="btn-text">' +
+    textos[idiomaActual].btnEnviar +
+    '</span><span class="btn-icon">🌴</span>';
+}
+
+// ========== SISTEMA DE ERRORES ==========
+function mostrarError(inputElement, mensajeError) {
+  const inputGroup = inputElement.parentNode;
+  limpiarError(inputElement);
+
+  inputElement.classList.add("error");
+
+  const errorDiv = document.createElement("div");
+  errorDiv.className = "input-error";
+  errorDiv.innerHTML = `<span>⚠️</span> <span>${mensajeError}</span>`;
+  inputGroup.appendChild(errorDiv);
+}
+
+function limpiarError(inputElement) {
+  const inputGroup = inputElement.parentNode;
+  const errorAnterior = inputGroup.querySelector(".input-error");
+  if (errorAnterior) {
+    errorAnterior.remove();
+  }
+  inputElement.classList.remove("error");
+}
+
+// ========== ANIMACIONES Y EFECTOS ==========
+function crearElementosAnimados() {
+  crearConfetiAmbiental();
+  // Agregar más animaciones si es necesario
+}
+
+function crearConfetiAmbiental() {
+  const contenedor = document.querySelector(".animales");
+  if (!contenedor) return;
+
+  const colores = ["#1b5e20", "#66bb6a", "#ffd54f", "#1e88e5"];
+
+  for (let i = 0; i < 20; i++) {
     const confeti = document.createElement("div");
-    confeti.className = "confeti";
-    confeti.style.left = Math.random() * 100 + "vw";
-    confeti.style.background =
-      colores[Math.floor(Math.random() * colores.length)];
-    confeti.style.animationDuration = Math.random() * 3 + 2 + "s";
-    confeti.style.animationDelay = Math.random() * 5 + "s";
+    confeti.className = "confeti-ambiental";
+    confeti.style.cssText = `
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: ${colores[Math.floor(Math.random() * colores.length)]};
+      border-radius: 50%;
+      pointer-events: none;
+      animation: flotarConfeti ${Math.random() * 10 + 10}s linear infinite;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      animation-delay: ${Math.random() * 5}s;
+    `;
     contenedor.appendChild(confeti);
   }
 }
 
-// Función para crear pájaros (guacamayos como en Río)
-function crearPajaros() {
-  const contenedor = document.querySelector(".elementos-carnaval");
-  for (let i = 0; i < 4; i++) {
-    const pajaro = document.createElement("div");
-    pajaro.className = "pajaro-rio";
-    pajaro.style.top = Math.random() * 50 + 10 + "vh";
-    pajaro.style.animationDelay = Math.random() * 10 + "s";
-    pajaro.style.animationDuration = Math.random() * 10 + 15 + "s";
-    contenedor.appendChild(pajaro);
+function crearEfectoExito() {
+  const colores = ["#1b5e20", "#66bb6a", "#ffd54f", "#1e88e5"];
+
+  for (let i = 0; i < 25; i++) {
+    const confeti = document.createElement("div");
+    confeti.className = "confeti-exito";
+    confeti.style.cssText = `
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: ${colores[Math.floor(Math.random() * colores.length)]};
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      pointer-events: none;
+      z-index: 1000;
+      animation: explotarConfeti 1s ease-out forwards;
+    `;
+
+    document.body.appendChild(confeti);
+
+    setTimeout(() => {
+      confeti.remove();
+    }, 1000);
   }
 }
 
-// Función para crear máscaras de carnaval
-function crearMascaras() {
-  const contenedor = document.querySelector(".elementos-carnaval");
-  const mascaras = ["🎭", "😷", "🥸", "👺"];
-
-  for (let i = 0; i < 6; i++) {
-    const mascara = document.createElement("div");
-    mascara.className = "mascara";
-    mascara.textContent = mascaras[Math.floor(Math.random() * mascaras.length)];
-    mascara.style.left = Math.random() * 90 + 5 + "vw";
-    mascara.style.top = Math.random() * 80 + 10 + "vh";
-    mascara.style.animationDelay = Math.random() * 5 + "s";
-    mascara.style.fontSize = Math.random() * 1 + 1.5 + "rem";
-    contenedor.appendChild(mascara);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Crear elementos animados
-  crearConfeti();
-  crearPajaros();
-  crearMascaras();
-
-  const form = document.getElementById("encuestaForm");
-  const respuestaDiv = document.getElementById("respuesta");
-  const spinner = document.getElementById("spinner");
-  const mensaje = document.getElementById("mensaje");
-  const boton = document.getElementById("btn-enviar");
-  const formSection = document.getElementById("formSection");
-  const identificacionInput = document.getElementById("identificacion");
-  const correoInput = document.getElementById("correo");
-  const telefonoInput = document.getElementById("telefono");
-
-  const API_URL =
-    window.location.hostname === "localhost"
-      ? "http://localhost:3000/api"
-      : "/api";
-
-  // Efecto de flotación al hacer scroll
-  if (formSection) {
-    window.addEventListener("scroll", () => {
-      const scroll = window.scrollY;
-      formSection.style.transform = `translateY(${scroll * 0.05}px)`;
-    });
-  }
-
-  // Validación en tiempo real de identificación
-  if (identificacionInput) {
-    let timeoutId;
-    identificacionInput.addEventListener("input", function () {
-      clearTimeout(timeoutId);
-      limpiarError(this);
-      timeoutId = setTimeout(() => {
-        verificarIdentificacion(this.value.trim());
-      }, 800);
-    });
-  }
-
-  // Validación en tiempo real de correo
-  if (correoInput) {
-    correoInput.addEventListener("blur", function () {
-      const correo = this.value.trim();
-      if (correo && !validarCorreo(correo)) {
-        mostrarError(this, "Por favor ingresa un correo electrónico válido");
-      } else {
-        limpiarError(this);
-      }
-    });
-  }
-
-  // Validación en tiempo real de teléfono
-  if (telefonoInput) {
-    telefonoInput.addEventListener("blur", function () {
-      const telefono = this.value.trim();
-      if (telefono && !validarTelefono(telefono)) {
-        mostrarError(this, "Por favor ingresa un número de teléfono válido");
-      } else {
-        limpiarError(this);
-      }
-    });
-
-    // Formatear teléfono mientras se escribe
-    telefonoInput.addEventListener("input", function () {
-      limpiarError(this);
-      this.value = this.value.replace(/[^0-9+\-\s\(\)]/g, "");
-    });
-  }
-
-  // Función para limpiar errores de un input
-  function limpiarError(inputElement) {
-    const inputGroup = inputElement.parentNode;
-    const errorAnterior = inputGroup.querySelector(".input-error");
-    if (errorAnterior) {
-      errorAnterior.remove();
+// ========== ESTILOS DINÁMICOS ==========
+const estilosDinamicos = `
+  @keyframes explotarConfeti {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
     }
-    inputElement.classList.remove("error");
-  }
-
-  // Función para mostrar error de validación
-  function mostrarError(inputElement, mensajeError) {
-    const inputGroup = inputElement.parentNode;
-    limpiarError(inputElement);
-
-    inputElement.classList.add("error");
-
-    const errorDiv = document.createElement("div");
-    errorDiv.className = "input-error";
-    errorDiv.innerHTML = `<span>&#10060;</span> <span>${mensajeError}</span>`;
-    inputGroup.appendChild(errorDiv);
-  }
-
-  // Función para verificar identificación
-  async function verificarIdentificacion(identificacion) {
-    if (!identificacion) return;
-    try {
-      const response = await fetch(`${API_URL}/encuestas`);
-      const result = await response.json();
-      if (
-        result.success &&
-        result.data.some((e) => e.identificacion === identificacion)
-      ) {
-        mostrarError(
-          identificacionInput,
-          "Esta identificación ya está registrada"
-        );
-      }
-    } catch (error) {
-      console.error("Error verificando identificación:", error);
+    100% {
+      transform: translate(${Math.random() * 200 - 100}px, ${
+  Math.random() * 200 - 100
+}px) scale(0);
+      opacity: 0;
     }
   }
-
-  // Manejo del envío del formulario
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    // Limpiar errores previos
-    document.querySelectorAll(".input-error").forEach((el) => el.remove());
-    document
-      .querySelectorAll("input.error, textarea.error")
-      .forEach((el) => el.classList.remove("error"));
-
-    const formData = {
-      nombre: document.getElementById("nombre").value.trim(),
-      identificacion: document.getElementById("identificacion").value.trim(),
-      correo: document.getElementById("correo").value.trim(),
-      telefono: document.getElementById("telefono").value.trim(),
-      programa: document.getElementById("programa").value.trim(),
-      opinion: document.getElementById("opinion").value.trim(),
-    };
-
-    // Validación completa
-    let esValido = true;
-
-    if (!formData.nombre) {
-      mostrarError(document.getElementById("nombre"), "El nombre es requerido");
-      esValido = false;
+  
+  @keyframes flotarConfeti {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+      opacity: 0.7;
     }
-
-    if (!formData.identificacion) {
-      mostrarError(
-        document.getElementById("identificacion"),
-        "La identificación es requerida"
-      );
-      esValido = false;
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+      opacity: 1;
     }
+  }
+  
+  .confeti-ambiental {
+    z-index: -1;
+  }
+  
+  .input-error {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  input.error, textarea.error {
+    border-color: #ff6b6b !important;
+    box-shadow: 0 0 5px rgba(255, 107, 107, 0.5) !important;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 
-    if (!formData.correo) {
-      mostrarError(
-        document.getElementById("correo"),
-        "El correo electrónico es requerido"
-      );
-      esValido = false;
-    } else if (!validarCorreo(formData.correo)) {
-      mostrarError(
-        document.getElementById("correo"),
-        "Por favor ingresa un correo electrónico válido"
-      );
-      esValido = false;
-    }
+  /* Estilos para la galería */
+  .galeria-instagram {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
 
-    if (!formData.telefono) {
-      mostrarError(
-        document.getElementById("telefono"),
-        "El teléfono es requerido"
-      );
-      esValido = false;
-    } else if (!validarTelefono(formData.telefono)) {
-      mostrarError(
-        document.getElementById("telefono"),
-        "Por favor ingresa un número de teléfono válido"
-      );
-      esValido = false;
-    }
+  .galeria-instagram h3 {
+    color: #fff;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
 
-    if (!formData.programa) {
-      mostrarError(
-        document.getElementById("programa"),
-        "El programa es requerido"
-      );
-      esValido = false;
-    }
+  .galeria-instagram p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+  }
 
-    if (!formData.opinion) {
-      mostrarError(
-        document.getElementById("opinion"),
-        "La opinión es requerida"
-      );
-      esValido = false;
-    }
+  .galeria-botones {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-    if (!esValido) return;
+  .btn-galeria {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-    // Efecto del botón y animación de carga
-    boton.disabled = true;
-    let dotCount = 0;
-    const loadingInterval = setInterval(() => {
-      dotCount = (dotCount + 1) % 4;
-      boton.textContent = textos[idiomaActual].btnEnviar + ".".repeat(dotCount);
-    }, 400);
+  .btn-seguir {
+    background: linear-gradient(45deg, #E4405F, #F77737);
+  }
 
-    form.style.opacity = "0.5";
-    spinner.style.display = "block";
+  .btn-galeria:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+`;
 
-    try {
-      const response = await fetch(`${API_URL}/encuesta`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+// Añadir estilos al documento
+const styleSheet = document.createElement("style");
+styleSheet.textContent = estilosDinamicos;
+document.head.appendChild(styleSheet);
 
-      const result = await response.json();
-
-      if (result.success) {
-        // Ocultar formulario y mostrar mensaje de éxito
-        form.style.display = "none";
-        spinner.style.display = "none";
-        respuestaDiv.innerHTML = `
-          <div class="success-message">
-            <h3>&#x2705; ${textos[idiomaActual].mensajeExito}</h3>
-            <p>${result.message}</p>
-            <div style="margin-top: 20px;">
-              <button onclick="location.reload()" class="btn-secondary">
-                &#x1F4DD; ${textos[idiomaActual].enviarOtra}
-              </button>
-              <button onclick="verAgradecimiento()" class="btn-primary" style="margin-left: 10px;">
-                &#x1F389; ${textos[idiomaActual].verAgradecimiento}
-              </button>
-            </div>
-          </div>
-        `;
-        lanzarConfetiEspecial();
-      } else {
-        if (result.message.includes("identificación")) {
-          mostrarError(identificacionInput, result.message);
-        } else {
-          throw new Error(result.message);
-        }
-        // Restaurar botón y formulario en caso de error de validación
-        boton.disabled = false;
-        form.style.opacity = "1";
-        spinner.style.display = "none";
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      form.style.display = "none";
-      spinner.style.display = "none";
-      respuestaDiv.innerHTML = `
-        <div class="error-message">
-          <h3>&#x274C; ${textos[idiomaActual].mensajeError}</h3>
-          <p>${error.message || "Ocurrió un problema, intenta de nuevo."}</p>
-          <button onclick="location.reload()" class="btn-secondary">
-            &#x1F504; ${textos[idiomaActual].intentarNuevamente}
-          </button>
-        </div>
-      `;
-    } finally {
-      clearInterval(loadingInterval);
-      boton.textContent = textos[idiomaActual].btnEnviar;
-    }
-  });
-
-  // Efectos visuales en los inputs
-  const inputs = document.querySelectorAll("input, textarea");
-  inputs.forEach((input) => {
-    input.addEventListener("focus", function () {
-      this.style.boxShadow =
-        "0 0 20px var(--amarillo-sol), 0 0 30px var(--naranja-pasion)";
-      this.style.borderColor = "var(--amarillo-sol)";
-    });
-
-    input.addEventListener("blur", function () {
-      if (!this.classList.contains("error")) {
-        this.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.1)";
-        this.style.borderColor = "transparent";
-      }
-    });
-  });
-});
-
-// Función global para ir a la página de agradecimiento
+// ========== FUNCIONES GLOBALES ==========
 function verAgradecimiento() {
   window.location.href = "gracias.html";
 }
 
-// Función de confeti especial para éxito
-function lanzarConfetiEspecial() {
-  const container = document.body;
-  const confettiCount = 200;
-  const colors = [
-    "#00A86B",
-    "#FFD700",
-    "#00A9E0",
-    "#FF6B35",
-    "#FF44CC",
-    "#8A2BE2",
-    "#40E0D0",
-    "#FF4500",
-  ];
+// Mejorar experiencia en dispositivos táctiles
+if ("ontouchstart" in window) {
+  document.body.classList.add("touch-device");
+  const inputs = document.querySelectorAll("input, textarea, button");
+  inputs.forEach((input) => {
+    input.style.fontSize = "16px";
+  });
+}
 
-  for (let i = 0; i < confettiCount; i++) {
-    const confetti = document.createElement("div");
-    confetti.style.position = "absolute";
-    confetti.style.width = `${Math.random() * 12 + 6}px`;
-    confetti.style.height = confetti.style.width;
-    confetti.style.backgroundColor =
-      colors[Math.floor(Math.random() * colors.length)];
-    confetti.style.top = `${Math.random() * 100}%`;
-    confetti.style.left = `${Math.random() * 100}%`;
-    confetti.style.opacity = "1";
-    confetti.style.borderRadius = "50%";
-    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-    confetti.style.transition = "transform 3s ease-out, opacity 3s ease-out";
-    confetti.style.zIndex = "9999";
-    confetti.style.boxShadow = "0 0 5px rgba(255,255,255,0.5)";
-    container.appendChild(confetti);
-
-    setTimeout(() => {
-      confetti.style.transform = `translateY(${window.innerHeight}px) rotate(${
-        Math.random() * 720 + 360
-      }deg)`;
-      confetti.style.opacity = "0";
-    }, 10);
-
-    setTimeout(() => {
-      confetti.remove();
-    }, 3000);
-  }
+// Cargar idioma guardado
+const idiomaGuardado = localStorage.getItem("idiomaPreferido");
+if (idiomaGuardado && textos[idiomaGuardado]) {
+  cambiarIdioma(idiomaGuardado);
 }
