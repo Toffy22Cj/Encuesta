@@ -12,50 +12,175 @@
             --amarillo: #ffd54f;
             --azul: #1e88e5;
             --blanco: #fff;
-            --verde-oscuro: #0d3d0d;
             --sombra: rgba(0, 0, 0, 0.3);
+            --verde-oscuro: #0d3d0d;
             --glass: rgba(255, 255, 255, 0.08);
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
 
         html,
         body {
             height: 100%;
-            font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, var(--verde-oscuro) 0%, var(--verde) 100%);
+            overflow-x: hidden;
             color: var(--blanco);
-            padding: 20px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            background: var(--verde-oscuro);
             position: relative;
-            overflow-x: hidden;
+            padding: 20px;
         }
 
-        /* Fondo decorativo similar al diseño principal */
-        .background-decor {
+        /* FONDO RESPONSIVE - Similar a style.css */
+        .background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            opacity: 0.1;
-            background:
-                radial-gradient(circle at 20% 80%, var(--amarillo) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, var(--azul) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, var(--verde-claro) 0%, transparent 50%);
+            overflow: hidden;
+            z-index: -3;
         }
 
+        .fondo-base {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            animation: moverFondo 40s ease-in-out infinite alternate;
+        }
+
+        @keyframes moverFondo {
+            from {
+                transform: scale(1) translate(0, 0);
+            }
+
+            to {
+                transform: scale(1.1) translate(-2%, -2%);
+            }
+        }
+
+        /* Luz ambiental */
+        .luz {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%,
+                    rgba(255, 255, 255, 0.15),
+                    transparent 70%);
+            animation: moverLuz 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes moverLuz {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(5%, 5%);
+            }
+        }
+
+        /* Agua */
+        .agua {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top,
+                    rgba(30, 136, 229, 0.3),
+                    rgba(30, 136, 229, 0.1));
+            animation: reflejo 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes reflejo {
+            from {
+                opacity: 0.3;
+            }
+
+            to {
+                opacity: 0.6;
+            }
+        }
+
+        /* Hojas flotantes */
+        .hojas-flotantes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .hoja {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--verde-claro);
+            border-radius: 50% 0 50% 0;
+            opacity: 0.7;
+            animation: caerHojas 15s linear infinite;
+        }
+
+        .hoja:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+
+        .hoja:nth-child(2) {
+            left: 20%;
+            animation-delay: 5s;
+            animation-duration: 25s;
+        }
+
+        .hoja:nth-child(3) {
+            left: 50%;
+            animation-delay: 10s;
+            animation-duration: 18s;
+        }
+
+        .hoja:nth-child(4) {
+            left: 70%;
+            animation-delay: 7s;
+            animation-duration: 22s;
+        }
+
+        .hoja:nth-child(5) {
+            left: 90%;
+            animation-delay: 3s;
+            animation-duration: 30s;
+        }
+
+        @keyframes caerHojas {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Contenedor principal */
         .shell {
             width: 1200px;
             max-width: 95%;
@@ -66,8 +191,24 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             margin-top: 20px;
+            animation: aparecer 1s ease;
+            position: relative;
+            z-index: 2;
         }
 
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
         header {
             display: flex;
             align-items: center;
@@ -75,6 +216,7 @@
             margin-bottom: 20px;
             padding-bottom: 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-shadow: 2px 2px 4px var(--sombra);
         }
 
         .logo {
@@ -96,18 +238,16 @@
         }
 
         h1 {
-            font-size: 28px;
+            font-size: 2.5rem;
             margin: 0;
-            background: linear-gradient(45deg, var(--amarillo), var(--verde-claro));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--amarillo);
+            margin-bottom: 0.5rem;
         }
 
         p.lead {
             margin: 5px 0 0 0;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
         }
 
         .header-actions {
@@ -116,7 +256,7 @@
             align-items: center;
         }
 
-        /* Collage grid mejorado */
+        /* Collage grid */
         .collage {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -134,6 +274,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             background: rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            animation: fadeIn 0.6s ease;
         }
 
         .item:hover {
@@ -246,7 +387,7 @@
             align-items: center;
         }
 
-        /* modal carousel mejorado */
+        /* modal carousel */
         .modal {
             position: fixed;
             inset: 0;
@@ -341,7 +482,7 @@
             transform: scale(1.1);
         }
 
-        /* thumbnails mejorados */
+        /* thumbnails */
         .thumbs {
             display: flex;
             gap: 10px;
@@ -407,6 +548,11 @@
             padding: 15px;
             border-radius: 10px;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
         }
 
         .stat-icon {
@@ -426,6 +572,90 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
+        /* Botones de idioma */
+        .idioma-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .btn-idioma {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border: 2px solid var(--amarillo);
+            color: var(--blanco);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-idioma:hover {
+            background: var(--amarillo);
+            color: var(--verde-oscuro);
+            transform: scale(1.05);
+        }
+
+        /* Botón de sonido */
+        .sonido-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: var(--blanco);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .sonido-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--verde-claro);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--amarillo);
+        }
+
         /* responsive */
         @media (max-width: 900px) {
             .collage {
@@ -433,7 +663,7 @@
             }
 
             h1 {
-                font-size: 24px;
+                font-size: 2rem;
             }
 
             .logo {
@@ -465,6 +695,24 @@
 
             .controls-left {
                 justify-content: center;
+            }
+
+            .fondo-base {
+                animation: moverFondoMobile 30s ease-in-out infinite alternate;
+            }
+
+            @keyframes moverFondoMobile {
+                from {
+                    transform: scale(1.05) translate(0, 0);
+                }
+
+                to {
+                    transform: scale(1.1) translate(-1%, -1%);
+                }
+            }
+
+            .agua {
+                height: 30%;
             }
         }
 
@@ -517,53 +765,53 @@
             body {
                 padding: 10px;
             }
-        }
 
-        /* Animaciones */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+            /* Ocultar algunas animaciones en móviles para mejor rendimiento */
+            .animales {
+                display: none;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .hojas-flotantes {
+                display: none;
             }
-        }
 
-        .shell {
-            animation: fadeIn 0.8s ease;
-        }
+            .luz {
+                animation: none;
+            }
 
-        .item {
-            animation: fadeIn 0.6s ease;
-        }
-
-        /* Scroll personalizado */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--verde-claro);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--amarillo);
+            .fondo-base {
+                animation: none;
+                transform: scale(1.1);
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Fondo decorativo -->
-    <div class="background-decor"></div>
+    <!-- Fondo responsive similar a style.css -->
+    <div class="background">
+        <img class="fondo-base"
+            src="Airbrush-IMAGE-UPSCALER-1762306882692-1762306882692.png"
+            alt="Fondo Amazonas">
+        <div class="luz"></div>
+        <div class="agua"></div>
+        <div class="hojas-flotantes">
+            <div class="hoja"></div>
+            <div class="hoja"></div>
+            <div class="hoja"></div>
+            <div class="hoja"></div>
+            <div class="hoja"></div>
+        </div>
+    </div>
+
+    <!-- Botones de idioma y sonido -->
+    <div class="idioma-container">
+        <button class="btn-idioma">ES</button>
+        <button class="btn-idioma">PT</button>
+        <button class="btn-idioma">EN</button>
+    </div>
+
+    <button class="sonido-btn">♪</button>
 
     <div class="shell">
         <header>
@@ -608,7 +856,9 @@
                 <div class="caption">Materiales</div>
             </div>
             <div class="item w3">
-
+                <img data-index="5" src="6.jpeg" alt="Detalles del stand">
+                <div class="caption">Detalles</div>
+            </div>
         </section>
 
         <div class="controls">
