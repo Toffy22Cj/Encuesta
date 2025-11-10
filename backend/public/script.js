@@ -1,4 +1,4 @@
-// script.js - Versión corregida y unificada
+// script.js - Versión corregida para Fonoaudiología Brasil
 
 // ========== CONFIGURACIÓN INICIAL ==========
 const audio = document.getElementById("sonidoSelva");
@@ -14,22 +14,22 @@ const urlInstagram =
 // Textos en diferentes idiomas
 const textos = {
   es: {
-    tituloHeader: "🌿 Encuesta Amazónica 🇧🇷",
-    subtituloHeader: "Sumérgete en la biodiversidad del Amazonas",
-    tituloBienvenida: "¡Bem-vindo à Amazônia!",
+    tituloHeader: "🌿 Encuesta Fonoaudiología 🇧🇷",
+    subtituloHeader: "Você na Fono",
+    tituloBienvenida: "¡Bem-vindo!",
     textoBienvenida:
-      "Como la selva tropical más grande del mundo, el Amazonas brasileño alberga una increíble diversidad de vida. Ayúdanos a proteger este tesoro natural compartiendo tu experiencia en nuestro stand.",
-    tituloEncuesta: "Encuesta Amazónica",
+      "El programa de Fonoaudiología te da la bienvenida con una experiencia única inspirada en la biodiversidad brasileña. Ayúdanos a mejorar compartiendo tu opinión sobre nuestro stand.",
+    tituloEncuesta: "Encuesta Fono",
     labelNombre: "Nombre completo *",
     labelIdentificacion: "Número de identificación *",
     labelCorreo: "Correo electrónico *",
     labelTelefono: "Teléfono *",
     labelPrograma: "Programa académico *",
-    labelOpinion: "¿Qué te pareció nuestro stand amazónico? *",
+    labelOpinion: "¿Qué te pareció nuestro stand de Fonoaudiología? *",
     btnEnviar: "Enviar opinión",
     textoCarga: "Enviando encuesta...",
     mensajeExito:
-      "🌿 ¡Gracias por tu opinión sobre el Amazonas! Tu contribución ayuda a preservar este tesoro natural.",
+      "🎓 ¡Gracias por tu opinión sobre Fonoaudiología! Tu contribución nos ayuda a mejorar.",
     mensajeError: "Error al enviar",
     enviarOtra: "Enviar otra encuesta",
     verAgradecimiento: "Ver Agradecimiento",
@@ -39,22 +39,22 @@ const textos = {
     textoGaleria: "¡Mira las fotos de nuestro stand y síguenos en Instagram!",
   },
   en: {
-    tituloHeader: "🌿 Amazon Survey 🇧🇷",
-    subtituloHeader: "Immerse yourself in Amazon biodiversity",
-    tituloBienvenida: "Welcome to the Amazon!",
+    tituloHeader: "🌿 Speech Therapy Survey 🇧🇷",
+    subtituloHeader: "You in Speech Therapy",
+    tituloBienvenida: "Welcome!",
     textoBienvenida:
-      "As the world's largest tropical rainforest, the Brazilian Amazon hosts an incredible diversity of life. Help us protect this natural treasure by sharing your experience at our stand.",
-    tituloEncuesta: "Amazon Survey",
+      "The Speech Therapy program welcomes you with a unique experience inspired by Brazilian biodiversity. Help us improve by sharing your opinion about our stand.",
+    tituloEncuesta: "Speech Therapy Survey",
     labelNombre: "Full name *",
     labelIdentificacion: "Identification number *",
     labelCorreo: "Email *",
     labelTelefono: "Phone *",
     labelPrograma: "Academic program *",
-    labelOpinion: "What did you think of our Amazon stand? *",
+    labelOpinion: "What did you think of our Speech Therapy stand? *",
     btnEnviar: "Submit opinion",
     textoCarga: "Sending survey...",
     mensajeExito:
-      "🌿 Thank you for your opinion about the Amazon! Your contribution helps preserve this natural treasure.",
+      "🎓 Thank you for your opinion about Speech Therapy! Your contribution helps us improve.",
     mensajeError: "Error sending",
     enviarOtra: "Submit another survey",
     verAgradecimiento: "View Appreciation",
@@ -64,22 +64,22 @@ const textos = {
     textoGaleria: "Check out our stand photos and follow us on Instagram!",
   },
   pt: {
-    tituloHeader: "🌿 Pesquisa Amazônica 🇧🇷",
-    subtituloHeader: "Mergulhe na biodiversidade da Amazônia",
-    tituloBienvenida: "Bem-vindo à Amazônia!",
+    tituloHeader: "🌿 Pesquisa Fonoaudiologia 🇧🇷",
+    subtituloHeader: "Você na Fono",
+    tituloBienvenida: "Bem-vindo!",
     textoBienvenida:
-      "Como a maior floresta tropical do mundo, a Amazônia brasileira abriga uma incrível diversidade de vida. Ajude-nos a proteger este tesouro natural compartilhando sua experiência em nosso estande.",
-    tituloEncuesta: "Pesquisa Amazônica",
+      "O programa de Fonoaudiologia dá as boas-vindas a você com uma experiência única inspirada na biodiversidade brasileira. Ajude-nos a melhorar compartilhando sua opinião sobre nosso estande.",
+    tituloEncuesta: "Pesquisa Fono",
     labelNombre: "Nome completo *",
     labelIdentificacion: "Número de identificação *",
     labelCorreo: "E-mail *",
     labelTelefono: "Telefone *",
     labelPrograma: "Programa acadêmico *",
-    labelOpinion: "O que você achou do nosso estande amazônico? *",
+    labelOpinion: "O que você achou do nosso estande de Fonoaudiologia? *",
     btnEnviar: "Enviar opinião",
     textoCarga: "Enviando pesquisa...",
     mensajeExito:
-      "🌿 Obrigado pela sua opinião sobre a Amazônia! Sua contribuição ajuda a preservar este tesouro natural.",
+      "🎓 Obrigado pela sua opinião sobre Fonoaudiologia! Sua contribuição nos ajuda a melhorar.",
     mensajeError: "Erro ao enviar",
     enviarOtra: "Enviar outra pesquisa",
     verAgradecimiento: "Ver Agradecimento",

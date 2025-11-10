@@ -1,282 +1,404 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encuesta Fonoaudiología Brasil</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Encuesta Fono 🇧🇷</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-</head>
-
-<body>
-  <!-- Fondo ilustrado -->
-  <div class="background">
-    <img src="Airbrush-IMAGE-UPSCALER-1762306882692-1762306882692.png" alt="Amazonas fondo" class="fondo-base">
-    <div class="luz"></div>
-    <div class="agua"></div>
-    <div class="hojas-flotantes">
-      <div class="hoja"></div>
-      <div class="hoja"></div>
-      <div class="hoja"></div>
-      <div class="hoja"></div>
-      <div class="hoja"></div>
+  <body>
+    <!-- Fondo ilustrado -->
+    <div class="background">
+      <img
+        src="Airbrush-IMAGE-UPSCALER-1762306882692-1762306882692.png"
+        alt="Brasil fondo"
+        class="fondo-base"
+      />
+      <div class="luz"></div>
+      <div class="agua"></div>
+      <div class="hojas-flotantes">
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+      </div>
     </div>
-  </div>
 
-  <!-- Fauna SVG animada -->
-  <svg class="animales" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-    <!-- Tucán mejorado -->
-    <g class="tucan" transform="translate(600,180)">
-      <circle cx="0" cy="0" r="25" fill="#222" />
-      <path d="M0 0 Q60 -20 100 10 Q60 20 0 0" fill="#ffcc00" />
-      <circle cx="-8" cy="-5" r="5" fill="white" />
-      <circle cx="-8" cy="-5" r="2" fill="black" />
-      <path d="M100 10 L120 5 L115 15 Z" fill="#ff6600" /> <!-- Pico superior -->
-      <path d="M100 10 L120 15 L115 5 Z" fill="#ff9900" /> <!-- Pico inferior -->
-    </g>
+    <!-- Fauna SVG animada -->
+    <svg
+      class="animales"
+      viewBox="0 0 800 600"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <!-- Tucán mejorado -->
+      <g class="tucan" transform="translate(600,180)">
+        <circle cx="0" cy="0" r="25" fill="#222" />
+        <path d="M0 0 Q60 -20 100 10 Q60 20 0 0" fill="#ffcc00" />
+        <circle cx="-8" cy="-5" r="5" fill="white" />
+        <circle cx="-8" cy="-5" r="2" fill="black" />
+        <path d="M100 10 L120 5 L115 15 Z" fill="#ff6600" />
+        <!-- Pico superior -->
+        <path d="M100 10 L120 15 L115 5 Z" fill="#ff9900" />
+        <!-- Pico inferior -->
+      </g>
 
-    <!-- Mariposas mejoradas -->
-    <g class="mariposa mariposa-1" transform="translate(150,250)">
-      <path d="M0 0 Q-20 -25 -40 0 Q-20 25 0 0" fill="#ff69b4" />
-      <path d="M0 0 Q20 -25 40 0 Q20 25 0 0" fill="#ffb6c1" />
-      <circle cx="0" cy="0" r="3" fill="#333" />
-    </g>
+      <!-- Mariposas mejoradas -->
+      <g class="mariposa mariposa-1" transform="translate(150,250)">
+        <path d="M0 0 Q-20 -25 -40 0 Q-20 25 0 0" fill="#ff69b4" />
+        <path d="M0 0 Q20 -25 40 0 Q20 25 0 0" fill="#ffb6c1" />
+        <circle cx="0" cy="0" r="3" fill="#333" />
+      </g>
 
-    <g class="mariposa mariposa-2" transform="translate(350,200)">
-      <path d="M0 0 Q-15 -20 -30 0 Q-15 20 0 0" fill="#ffd700" />
-      <path d="M0 0 Q15 -20 30 0 Q15 20 0 0" fill="#ffa500" />
-      <circle cx="0" cy="0" r="2.5" fill="#333" />
-    </g>
+      <g class="mariposa mariposa-2" transform="translate(350,200)">
+        <path d="M0 0 Q-15 -20 -30 0 Q-15 20 0 0" fill="#ffd700" />
+        <path d="M0 0 Q15 -20 30 0 Q15 20 0 0" fill="#ffa500" />
+        <circle cx="0" cy="0" r="2.5" fill="#333" />
+      </g>
 
-    <!-- Peces mejorados -->
-    <g class="pez pez-1" transform="translate(200,500)">
-      <ellipse cx="0" cy="0" rx="25" ry="12" fill="#1e90ff" />
-      <polygon points="25,0 40,-8 40,8" fill="#0066cc" />
-      <circle cx="-15" cy="-3" r="3" fill="white" />
-      <circle cx="-15" cy="-3" r="1.5" fill="black" />
-      <path d="M-10 5 Q-5 8 0 5" fill="none" stroke="#0066cc" stroke-width="1" />
-    </g>
+      <!-- Peces mejorados -->
+      <g class="pez pez-1" transform="translate(200,500)">
+        <ellipse cx="0" cy="0" rx="25" ry="12" fill="#1e90ff" />
+        <polygon points="25,0 40,-8 40,8" fill="#0066cc" />
+        <circle cx="-15" cy="-3" r="3" fill="white" />
+        <circle cx="-15" cy="-3" r="1.5" fill="black" />
+        <path
+          d="M-10 5 Q-5 8 0 5"
+          fill="none"
+          stroke="#0066cc"
+          stroke-width="1"
+        />
+      </g>
 
-    <g class="pez pez-2" transform="translate(500,520)">
-      <ellipse cx="0" cy="0" rx="20" ry="10" fill="#ff6b6b" />
-      <polygon points="20,0 32,-6 32,6" fill="#cc0000" />
-      <circle cx="-12" cy="-2" r="2.5" fill="white" />
-      <circle cx="-12" cy="-2" r="1.2" fill="black" />
-    </g>
+      <g class="pez pez-2" transform="translate(500,520)">
+        <ellipse cx="0" cy="0" rx="20" ry="10" fill="#ff6b6b" />
+        <polygon points="20,0 32,-6 32,6" fill="#cc0000" />
+        <circle cx="-12" cy="-2" r="2.5" fill="white" />
+        <circle cx="-12" cy="-2" r="1.2" fill="black" />
+      </g>
 
-    <!-- Mono mejorado -->
-    <g class="mono" transform="translate(100,300)">
-      <circle cx="0" cy="0" r="22" fill="#8B4513" />
-      <circle cx="-8" cy="-5" r="4" fill="white" />
-      <circle cx="-8" cy="-5" r="2" fill="black" />
-      <circle cx="8" cy="-5" r="4" fill="white" />
-      <circle cx="8" cy="-5" r="2" fill="black" />
-      <ellipse cx="0" cy="8" rx="10" ry="6" fill="#8B4513" />
-      <circle cx="0" cy="10" r="3" fill="#654321" /> <!-- Nariz -->
-      <path d="M-5 15 Q0 20 5 15" fill="none" stroke="#654321" stroke-width="1.5" /> <!-- Boca -->
-      <!-- Brazos -->
-      <path d="M-25 -5 Q-35 5 -25 15" fill="none" stroke="#8B4513" stroke-width="8" stroke-linecap="round" />
-      <path d="M25 -5 Q35 5 25 15" fill="none" stroke="#8B4513" stroke-width="8" stroke-linecap="round" />
-      <!-- Cola -->
-      <path d="M25 0 Q40 -20 55 0 Q40 20 25 0" fill="#8B4513" />
-    </g>
+      <!-- Mono mejorado -->
+      <g class="mono" transform="translate(100,300)">
+        <circle cx="0" cy="0" r="22" fill="#8B4513" />
+        <circle cx="-8" cy="-5" r="4" fill="white" />
+        <circle cx="-8" cy="-5" r="2" fill="black" />
+        <circle cx="8" cy="-5" r="4" fill="white" />
+        <circle cx="8" cy="-5" r="2" fill="black" />
+        <ellipse cx="0" cy="8" rx="10" ry="6" fill="#8B4513" />
+        <circle cx="0" cy="10" r="3" fill="#654321" />
+        <!-- Nariz -->
+        <path
+          d="M-5 15 Q0 20 5 15"
+          fill="none"
+          stroke="#654321"
+          stroke-width="1.5"
+        />
+        <!-- Boca -->
+        <!-- Brazos -->
+        <path
+          d="M-25 -5 Q-35 5 -25 15"
+          fill="none"
+          stroke="#8B4513"
+          stroke-width="8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M25 -5 Q35 5 25 15"
+          fill="none"
+          stroke="#8B4513"
+          stroke-width="8"
+          stroke-linecap="round"
+        />
+        <!-- Cola -->
+        <path d="M25 0 Q40 -20 55 0 Q40 20 25 0" fill="#8B4513" />
+      </g>
 
-    <!-- Guacamayo -->
-    <g class="guacamayo" transform="translate(400,100)">
-      <path d="M0 0 Q-30 -40 -60 0 Q-30 40 0 0" fill="#FF0000" /> <!-- Cuerpo -->
-      <path d="M-60 0 Q-80 -20 -100 -10 Q-90 10 -60 0" fill="#FFFF00" /> <!-- Ala -->
-      <circle cx="-15" cy="-8" r="6" fill="white" />
-      <circle cx="-15" cy="-8" r="3" fill="black" />
-      <path d="M0 0 L20 -5 L15 5 Z" fill="#FF9900" /> <!-- Pico -->
-      <path d="M-70 -15 L-90 -25 L-85 -15 Z" fill="#00AAFF" /> <!-- Cresta -->
-    </g>
+      <!-- Guacamayo -->
+      <g class="guacamayo" transform="translate(400,100)">
+        <path d="M0 0 Q-30 -40 -60 0 Q-30 40 0 0" fill="#FF0000" />
+        <!-- Cuerpo -->
+        <path d="M-60 0 Q-80 -20 -100 -10 Q-90 10 -60 0" fill="#FFFF00" />
+        <!-- Ala -->
+        <circle cx="-15" cy="-8" r="6" fill="white" />
+        <circle cx="-15" cy="-8" r="3" fill="black" />
+        <path d="M0 0 L20 -5 L15 5 Z" fill="#FF9900" />
+        <!-- Pico -->
+        <path d="M-70 -15 L-90 -25 L-85 -15 Z" fill="#00AAFF" />
+        <!-- Cresta -->
+      </g>
 
-    <!-- Delfín rosado -->
-    <g class="delfin" transform="translate(300,550)">
-      <path d="M0 0 Q-40 -20 -60 0 Q-40 20 0 0" fill="#FF69B4" /> <!-- Cuerpo -->
-      <path d="M-60 0 Q-70 -15 -80 0 Q-70 15 -60 0" fill="#FF69B4" /> <!-- Cola -->
-      <path d="M-10 -15 Q0 -25 10 -15" fill="#FF69B4" /> <!-- Aleta dorsal -->
-      <circle cx="-20" cy="-5" r="4" fill="white" />
-      <circle cx="-20" cy="-5" r="2" fill="black" />
-      <path d="M-45 -8 L-55 -15 L-45 -2 Z" fill="#FF69B4" /> <!-- Aleta -->
-      <path d="M-45 8 L-55 15 L-45 2 Z" fill="#FF69B4" /> <!-- Aleta -->
-    </g>
+      <!-- Delfín rosado -->
+      <g class="delfin" transform="translate(300,550)">
+        <path d="M0 0 Q-40 -20 -60 0 Q-40 20 0 0" fill="#FF69B4" />
+        <!-- Cuerpo -->
+        <path d="M-60 0 Q-70 -15 -80 0 Q-70 15 -60 0" fill="#FF69B4" />
+        <!-- Cola -->
+        <path d="M-10 -15 Q0 -25 10 -15" fill="#FF69B4" />
+        <!-- Aleta dorsal -->
+        <circle cx="-20" cy="-5" r="4" fill="white" />
+        <circle cx="-20" cy="-5" r="2" fill="black" />
+        <path d="M-45 -8 L-55 -15 L-45 -2 Z" fill="#FF69B4" />
+        <!-- Aleta -->
+        <path d="M-45 8 L-55 15 L-45 2 Z" fill="#FF69B4" />
+        <!-- Aleta -->
+      </g>
 
-    <!-- Perezoso -->
-    <g class="perezoso" transform="translate(650,350)">
-      <circle cx="0" cy="0" r="18" fill="#8B7355" /> <!-- Cabeza -->
-      <ellipse cx="0" cy="25" rx="25" ry="20" fill="#8B7355" /> <!-- Cuerpo -->
-      <circle cx="-5" cy="-5" r="3" fill="white" />
-      <circle cx="-5" cy="-5" r="1.5" fill="black" />
-      <circle cx="5" cy="-5" r="3" fill="white" />
-      <circle cx="5" cy="-5" r="1.5" fill="black" />
-      <path d="M-15 15 Q-30 25 -15 35" fill="none" stroke="#8B7355" stroke-width="8" stroke-linecap="round" />
-      <!-- Brazo -->
-      <path d="M15 15 Q30 25 15 35" fill="none" stroke="#8B7355" stroke-width="8" stroke-linecap="round" />
-      <!-- Brazo -->
-      <path d="M-20 40 Q-25 55 -15 50" fill="none" stroke="#8B7355" stroke-width="6" stroke-linecap="round" />
-      <!-- Pierna -->
-      <path d="M20 40 Q25 55 15 50" fill="none" stroke="#8B7355" stroke-width="6" stroke-linecap="round" />
-      <!-- Pierna -->
-      <path d="M0 5 Q5 10 0 15" fill="none" stroke="#654321" stroke-width="1.5" /> <!-- Boca -->
-    </g>
+      <!-- Perezoso -->
+      <g class="perezoso" transform="translate(650,350)">
+        <circle cx="0" cy="0" r="18" fill="#8B7355" />
+        <!-- Cabeza -->
+        <ellipse cx="0" cy="25" rx="25" ry="20" fill="#8B7355" />
+        <!-- Cuerpo -->
+        <circle cx="-5" cy="-5" r="3" fill="white" />
+        <circle cx="-5" cy="-5" r="1.5" fill="black" />
+        <circle cx="5" cy="-5" r="3" fill="white" />
+        <circle cx="5" cy="-5" r="1.5" fill="black" />
+        <path
+          d="M-15 15 Q-30 25 -15 35"
+          fill="none"
+          stroke="#8B7355"
+          stroke-width="8"
+          stroke-linecap="round"
+        />
+        <!-- Brazo -->
+        <path
+          d="M15 15 Q30 25 15 35"
+          fill="none"
+          stroke="#8B7355"
+          stroke-width="8"
+          stroke-linecap="round"
+        />
+        <!-- Brazo -->
+        <path
+          d="M-20 40 Q-25 55 -15 50"
+          fill="none"
+          stroke="#8B7355"
+          stroke-width="6"
+          stroke-linecap="round"
+        />
+        <!-- Pierna -->
+        <path
+          d="M20 40 Q25 55 15 50"
+          fill="none"
+          stroke="#8B7355"
+          stroke-width="6"
+          stroke-linecap="round"
+        />
+        <!-- Pierna -->
+        <path
+          d="M0 5 Q5 10 0 15"
+          fill="none"
+          stroke="#654321"
+          stroke-width="1.5"
+        />
+        <!-- Boca -->
+      </g>
 
-    <!-- Anaconda -->
-    <g class="anaconda" transform="translate(700,450)">
-      <path d="M0 0 Q-20 10 -40 0 Q-60 -10 -80 0 Q-100 10 -120 0" fill="none" stroke="#228B22" stroke-width="12"
-        stroke-linecap="round" />
-      <circle cx="0" cy="0" r="8" fill="#32CD32" /> <!-- Cabeza -->
-      <circle cx="-5" cy="-3" r="2" fill="black" /> <!-- Ojo -->
-      <path d="M5 0 L15 -3 L15 3 Z" fill="#32CD32" /> <!-- Lengua -->
-    </g>
+      <!-- Anaconda -->
+      <g class="anaconda" transform="translate(700,450)">
+        <path
+          d="M0 0 Q-20 10 -40 0 Q-60 -10 -80 0 Q-100 10 -120 0"
+          fill="none"
+          stroke="#228B22"
+          stroke-width="12"
+          stroke-linecap="round"
+        />
+        <circle cx="0" cy="0" r="8" fill="#32CD32" />
+        <!-- Cabeza -->
+        <circle cx="-5" cy="-3" r="2" fill="black" />
+        <!-- Ojo -->
+        <path d="M5 0 L15 -3 L15 3 Z" fill="#32CD32" />
+        <!-- Lengua -->
+      </g>
 
-    <!-- Rana venenosa -->
-    <g class="rana" transform="translate(200,400)">
-      <circle cx="0" cy="0" r="12" fill="#32CD32" /> <!-- Cuerpo -->
-      <circle cx="-8" cy="-5" r="3" fill="white" />
-      <circle cx="-8" cy="-5" r="1.5" fill="black" />
-      <circle cx="8" cy="-5" r="3" fill="white" />
-      <circle cx="8" cy="-5" r="1.5" fill="black" />
-      <ellipse cx="0" cy="8" rx="8" ry="5" fill="#32CD32" />
-      <path d="M-15 -8 Q-20 0 -15 8" fill="none" stroke="#32CD32" stroke-width="4" stroke-linecap="round" />
-      <!-- Pierna -->
-      <path d="M15 -8 Q20 0 15 8" fill="none" stroke="#32CD32" stroke-width="4" stroke-linecap="round" />
-      <!-- Pierna -->
-      <circle cx="-3" cy="10" r="1" fill="#FF0000" /> <!-- Mancha -->
-      <circle cx="3" cy="12" r="1" fill="#0000FF" /> <!-- Mancha -->
-    </g>
-  </svg>
+      <!-- Rana venenosa -->
+      <g class="rana" transform="translate(200,400)">
+        <circle cx="0" cy="0" r="12" fill="#32CD32" />
+        <!-- Cuerpo -->
+        <circle cx="-8" cy="-5" r="3" fill="white" />
+        <circle cx="-8" cy="-5" r="1.5" fill="black" />
+        <circle cx="8" cy="-5" r="3" fill="white" />
+        <circle cx="8" cy="-5" r="1.5" fill="black" />
+        <ellipse cx="0" cy="8" rx="8" ry="5" fill="#32CD32" />
+        <path
+          d="M-15 -8 Q-20 0 -15 8"
+          fill="none"
+          stroke="#32CD32"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <!-- Pierna -->
+        <path
+          d="M15 -8 Q20 0 15 8"
+          fill="none"
+          stroke="#32CD32"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <!-- Pierna -->
+        <circle cx="-3" cy="10" r="1" fill="#FF0000" />
+        <!-- Mancha -->
+        <circle cx="3" cy="12" r="1" fill="#0000FF" />
+        <!-- Mancha -->
+      </g>
+    </svg>
 
-  <!-- Botón de sonido -->
-  <button id="sonidoBtn" class="sonido-btn">🔊</button>
+    <!-- Botón de sonido -->
+    <button id="sonidoBtn" class="sonido-btn">🔊</button>
 
-  <!-- Botones de idioma -->
-  <div class="idioma-container">
-    <button class="btn-idioma" onclick="cambiarIdioma('es')">ES</button>
-    <button class="btn-idioma" onclick="cambiarIdioma('en')">EN</button>
-    <button class="btn-idioma" onclick="cambiarIdioma('pt')">PT</button>
-  </div>
+    <!-- Botones de idioma -->
+    <div class="idioma-container">
+      <button class="btn-idioma" onclick="cambiarIdioma('es')">ES</button>
+      <button class="btn-idioma" onclick="cambiarIdioma('en')">EN</button>
+      <button class="btn-idioma" onclick="cambiarIdioma('pt')">PT</button>
+    </div>
 
-  <header>
-    <h1 id="titulo-header">🌿 Encuesta Fono 🇧🇷</h1>
-    <p id="subtitulo-header">Sumérgete</p>
-  </header>
+    <header>
+      <h1 id="titulo-header">🌿 Encuesta Fonoaudiología 🇧🇷</h1>
+      <p id="subtitulo-header">Você na Fono</p>
+    </header>
 
-  <main>
-    <section class="info">
-      <h2 id="titulo-bienvenida">¡Bem-vindo!</h2>
-      <p id="texto-bienvenida">Como la selva tropical más grande del mundo, el Amazonas brasileño alberga una increíble
-        diversidad de vida. Ayúdanos a proteger este tesoro natural compartiendo tu experiencia en nuestro stand.</p>
-    </section>
+    <main>
+      <section class="info">
+        <h2 id="titulo-bienvenida">¡Bem-vindo!</h2>
+        <p id="texto-bienvenida">
+          El programa de Fonoaudiología te da la bienvenida con una experiencia
+          única inspirada en la biodiversidad brasileña. Ayúdanos a mejorar
+          compartiendo tu opinión sobre nuestro stand.
+        </p>
+      </section>
 
-    <section class="formulario">
-      <div class="form-header">
-        <h2 id="titulo-encuesta">Encuesta Fono</h2>
-        <p>Ayúdanos a mejorar nuestra representación</p>
-      </div>
-
-      <form id="encuestaForm">
-        <div class="input-group">
-          <label for="nombre" id="label-nombre">Nombre completo *</label>
-          <input type="text" id="nombre" name="nombre" required>
+      <section class="formulario">
+        <div class="form-header">
+          <h2 id="titulo-encuesta">Encuesta Fono</h2>
+          <p>Tu voz es importante para nosotros</p>
         </div>
 
-        <!-- NUEVO CAMPO: Identificación -->
-        <div class="input-group">
-          <label for="identificacion" id="label-identificacion">Número de identificación *</label>
-          <input type="text" id="identificacion" name="identificacion" required
-            placeholder="Ej: Cédula, Pasaporte, Carnet estudiantil">
+        <form id="encuestaForm">
+          <div class="input-group">
+            <label for="nombre" id="label-nombre">Nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" required />
+          </div>
+
+          <!-- NUEVO CAMPO: Identificación -->
+          <div class="input-group">
+            <label for="identificacion" id="label-identificacion"
+              >Número de identificación *</label
+            >
+            <input
+              type="text"
+              id="identificacion"
+              name="identificacion"
+              required
+              placeholder="Ej: Cédula, Pasaporte, Carnet estudiantil"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="email" id="label-correo">Correo electrónico *</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <!-- NUEVO CAMPO: Teléfono -->
+          <div class="input-group">
+            <label for="telefono" id="label-telefono">Teléfono *</label>
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              required
+              placeholder="Ej: +57 300 123 4567"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="programa" id="label-programa"
+              >Programa académico *</label
+            >
+            <input type="text" id="programa" name="programa" required />
+          </div>
+
+          <div class="input-group">
+            <label for="opinion" id="label-opinion"
+              >¿Qué te pareció nuestro stand de Fonoaudiología? *</label
+            >
+            <textarea id="opinion" name="opinion" rows="3" required></textarea>
+          </div>
+
+          <button type="submit" id="submitBtn">
+            <span class="btn-text" id="btn-enviar">Enviar opinión</span>
+            <span class="btn-icon">🌴</span>
+          </button>
+        </form>
+
+        <div id="mensaje" class="mensaje"></div>
+
+        <!-- Spinner de carga -->
+        <div id="spinner" style="display: none">
+          <div class="spinner"></div>
+          <p id="texto-carga">Enviando encuesta...</p>
         </div>
+      </section>
 
-        <div class="input-group">
-          <label for="email" id="label-correo">Correo electrónico *</label>
-          <input type="email" id="email" name="email" required>
+      <!-- NUEVA SECCIÓN: Galería Instagram -->
+      <section class="galeria-instagram">
+        <h3>📸 Galería del Evento</h3>
+        <p>¡Mira las fotos de nuestro stand y síguenos en Instagram!</p>
+        <div class="galeria-botones">
+          <button class="btn-galeria" onclick="verGaleriaInstagram()">
+            <span class="btn-icon">📱</span>
+            <span class="btn-text">Ver Galería</span>
+          </button>
+          <button class="btn-galeria btn-seguir" onclick="seguirInstagram()">
+            <span class="btn-icon">❤️</span>
+            <span class="btn-text">Seguir en Instagram</span>
+          </button>
         </div>
+      </section>
+    </main>
 
-        <!-- NUEVO CAMPO: Teléfono -->
-        <div class="input-group">
-          <label for="telefono" id="label-telefono">Teléfono *</label>
-          <input type="tel" id="telefono" name="telefono" required placeholder="Ej: +57 300 123 4567">
-        </div>
-
-        <div class="input-group">
-          <label for="programa" id="label-programa">Programa académico *</label>
-          <input type="text" id="programa" name="programa" required>
-        </div>
-
-        <div class="input-group">
-          <label for="opinion" id="label-opinion">¿Qué te pareció nuestro stand amazónico? *</label>
-          <textarea id="opinion" name="opinion" rows="3" required></textarea>
-        </div>
-
-        <button type="submit" id="submitBtn">
-          <span class="btn-text" id="btn-enviar">Enviar opinión</span>
-          <span class="btn-icon">🌴</span>
-        </button>
-      </form>
-
-      <div id="mensaje" class="mensaje"></div>
-
-      <!-- Spinner de carga -->
-      <div id="spinner" style="display: none;">
-        <div class="spinner"></div>
-        <p id="texto-carga">Enviando encuesta...</p>
-      </div>
-    </section>
-<!-- NUEVA SECCIÓN: Galería Instagram -->
-<section class="galeria-instagram">
-  <h3>📸 Galería del Evento</h3>
-  <p>¡Mira las fotos de nuestro stand y síguenos en Instagram!</p>
-  <div class="galeria-botones">
-    <button class="btn-galeria" onclick="verGaleriaInstagram()">
-      <span class="btn-icon">📱</span>
-      <span class="btn-text">Ver Galería</span>
-    </button>
-    <button class="btn-galeria btn-seguir" onclick="seguirInstagram()">
-      <span class="btn-icon">❤️</span>
-      <span class="btn-text">Seguir en Instagram</span>
-    </button>
-  </div>
-</section>
-</main>
-    <!-- Información adicional sobre el Amazonas -->
+    <!-- Información adicional sobre Fonoaudiología -->
     <section class="info-amazonas">
-      <h3>🌎 Datos sobre el Amazonas</h3>
+      <h3>🎓 Sobre Fonoaudiología</h3>
       <div class="datos-grid">
         <div class="dato">
-          <span class="dato-icon">🌳</span>
-          <p>El 60% del Amazonas está en Brasil</p>
+          <span class="dato-icon">🗣️</span>
+          <p>Mejoramos la comunicación humana</p>
         </div>
         <div class="dato">
-          <span class="dato-icon">🦜</span>
-          <p>Alberga 1 de cada 10 especies conocidas</p>
+          <span class="dato-icon">👂</span>
+          <p>Cuidamos tu salud auditiva</p>
         </div>
         <div class="dato">
-          <span class="dato-icon">💧</span>
-          <p>Produce el 20% del oxígeno del planeta</p>
+          <span class="dato-icon">😊</span>
+          <p>Trabajamos por tu bienestar vocal</p>
         </div>
       </div>
     </section>
 
-   
+    <footer>
+      <p>💚 Programa de Fonoaudiología — Brasil 2025</p>
+      <div class="footer-links">
+        <a href="#" onclick="verGaleriaInstagram()">Galería</a>
+        <a href="#" onclick="seguirInstagram()">Síguenos</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Términos de uso</a>
+        <a href="#">Contacto</a>
+      </div>
+    </footer>
 
-  <footer>
-    <p>💚 Protegiendo la selva amazónica — Brasil 2025</p>
-    <div class="footer-links">
-      <a href="#" onclick="verGaleriaInstagram()">Galería</a>
-      <a href="#" onclick="seguirInstagram()">Síguenos</a>
-      <a href="#">Política de privacidad</a>
-      <a href="#">Términos de uso</a>
-      <a href="#">Contacto</a>
-    </div>
-  </footer>
+    <audio id="sonidoSelva" loop>
+      <source
+        src="https://assets.mixkit.co/sfx/preview/mixkit-forest-ambience-14.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
 
-  <audio id="sonidoSelva" loop>
-    <source src="https://assets.mixkit.co/sfx/preview/mixkit-forest-ambience-14.mp3" type="audio/mpeg">
-  </audio>
-
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
