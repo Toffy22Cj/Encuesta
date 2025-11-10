@@ -935,3 +935,19 @@ footer {
     image-rendering: crisp-edges;
   }
 }
+/* Estilos para el enlace del álbum */
+#album-link {
+  animation: fadeIn 0.8s ease;
+}
+
+#album-link h3 {
+  color: var(--amarillo);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+#album-link p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.5;
+}

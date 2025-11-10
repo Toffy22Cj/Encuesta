@@ -41,31 +41,51 @@
             Nos alegra que hayas sido parte de esta feria tan especial 💕
         </div>
 
-        <!-- Sección de códigos QR -->
-        <div class="qr-section">
-            <div class="qr-title">📱 Comparte nuestra experiencia</div>
-            <div class="qr-container">
-                <div class="qr-item">
-                    <div id="qr-encuesta" class="qr-code">
-                        <div class="qr-placeholder">Cargando QR...</div>
-                    </div>
-                    <div class="qr-label">Encuesta Brasil</div>
-                </div>
-                <div class="qr-item">
-                    <div id="qr-agradecimiento" class="qr-code">
-                        <div class="qr-placeholder">Cargando QR...</div>
-                    </div>
-                    <div class="qr-label">Página de Agradecimiento</div>
-                </div>
-                <div class="qr-item">
-                    <div id="qr-galeria" class="qr-code">
-                        <div class="qr-placeholder">Cargando QR...</div>
-                    </div>
-                    <div class="qr-label">Galería Instagram</div>
-                </div>
+    <!-- En la sección de códigos QR, agregar un tercer QR -->
+    <div class="qr-container">
+        <div class="qr-item">
+            <div id="qr-encuesta" class="qr-code">
+                <div class="qr-placeholder">Cargando QR...</div>
             </div>
+            <div class="qr-label">Encuesta Brasil</div>
         </div>
-
+        <div class="qr-item">
+            <div id="qr-agradecimiento" class="qr-code">
+                <div class="qr-placeholder">Cargando QR...</div>
+            </div>
+            <div class="qr-label">Página de Agradecimiento</div>
+        </div>
+        <div class="qr-item">
+            <div id="qr-galeria" class="qr-code">
+                <div class="qr-placeholder">Cargando QR...</div>
+            </div>
+            <div class="qr-label">Galería Instagram</div>
+        </div>
+        <!-- NUEVO QR PARA EL ÁLBUM -->
+        <div class="qr-item">
+            <div id="qr-album" class="qr-code">
+                <div class="qr-placeholder">Cargando QR...</div>
+            </div>
+            <div class="qr-label">Galería Completa</div>
+        </div>
+    </div>
+    
+    <!-- También agregar botón directo al álbum -->
+    <div class="btn-container">
+        <button class="btn" onclick="window.location.href='index.html'">
+            🎪 Volver al Stand
+        </button>
+        <button class="btn" onclick="window.location.href='album.html'"
+            style="background: linear-gradient(45deg, #66bb6a, #1e88e5);">
+            🖼️ Ver Galería Completa
+        </button>
+        <button class="btn btn-secondary" onclick="compartirConQR()">
+            📱 Compartir con QR
+        </button>
+        <button class="btn btn-secondary" onclick="descargarQRs()">
+            ⬇️ Descargar QRs
+        </button>
+    </div>
         <!-- NUEVA SECCIÓN: Galería Instagram -->
         <div class="galeria-section">
             <h3>📸 ¡Mira nuestra galería!</h3>
@@ -102,368 +122,315 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 
     <script>
-        // URLs para los QR
-        const urlEncuesta = window.location.origin + '/index.html';
+     // URLs para los QR
+        const urlEncuesta = window.location.origin + "/index.html";
         const urlAgradecimiento = window.location.href;
-        const urlInstagram = 'https://www.instagram.com/fonoaudiologia_uds?igsh=MTZldTQ1cmU5ZGVmMQ%3D%3D&utm_source=qr';
+        const urlInstagram = "https://www.instagram.com/fonoaudiologia_uds?igsh=MTZldTQ1cmU5ZGVmMQ%3D%3D&utm_source=qr";
+        const urlAlbum = window.location.origin + "/album.html";
 
-        // Función para abrir Instagram
-        function verGaleriaInstagram() {
-            window.open(urlInstagram, '_blank');
+        // 🌈 Animación de confeti mejorada
+        const canvas = document.getElementById("confetti");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const confettiCount = 200;
+        const confetti = [];
+        const colors = ["#009739", "#FEDF00", "#002776", "#FFFFFF", "#FF6B6B"];
+
+        for (let i = 0; i < confettiCount; i++) {
+            confetti.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                r: Math.random() * 8 + 3,
+                d: Math.random() * confettiCount,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                tilt: Math.floor(Math.random() * 10) - 10,
+                tiltAngle: 0,
+                tiltAngleIncrement: Math.random() * 0.1 + 0.05,
+            });
         }
 
-        // Función para seguir en Instagram
-        function seguirInstagram() {
-            const instagramUrl = 'instagram://user?username=fonoaudiologia_uds';
-            window.location.href = instagramUrl;
-
-            // Fallback para navegadores que no soportan deep linking
-            setTimeout(() => {
-                window.open(urlInstagram, '_blank');
-            }, 500);
+        function drawConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confetti.forEach((p) => {
+                ctx.save();
+                ctx.translate(p.x + p.tilt, p.y);
+                ctx.rotate(p.tiltAngle);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r);
+                ctx.restore();
+            });
+            updateConfetti();
         }
 
-        // Función para verificar si la biblioteca QR está cargada
-        function verificarQRCode() {
-            if (typeof qrcode === 'undefined') {
-                console.error('QRCode library not loaded');
-                return false;
-            }
-            return true;
+        function updateConfetti() {
+            confetti.forEach((p) => {
+                p.tiltAngle += p.tiltAngleIncrement;
+                p.y += (Math.cos(p.d) + 1 + p.r / 2) * 0.5;
+                p.x += Math.sin(p.d) * 2;
+                p.tilt = Math.sin(p.tiltAngle) * 15;
+
+                if (p.y > canvas.height) {
+                    p.x = Math.random() * canvas.width;
+                    p.y = -20;
+                    p.r = Math.random() * 8 + 3;
+                }
+            });
         }
 
-        // Generar códigos QR usando la librería qrcode-generator
+        function animate() {
+            drawConfetti();
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Generar códigos QR
         function generarQRs() {
-            if (!verificarQRCode()) {
-                console.log('Intentando cargar QRCode...');
-                setTimeout(generarQRs, 500);
-                return;
-            }
-
-            try {
-                console.log('Generando QRs con librería:', typeof qrcode);
-
-                // QR para la encuesta
-                const qrEncuesta = document.getElementById('qr-encuesta');
-                if (qrEncuesta) {
-                    qrEncuesta.innerHTML = '';
-                    generarQRConCanvas(qrEncuesta, urlEncuesta, '#002776');
+            // QR para la encuesta
+            QRCode.toCanvas(
+                document.getElementById("qr-encuesta"),
+                urlEncuesta,
+                {
+                    width: 150,
+                    height: 150,
+                    margin: 1,
+                    color: {
+                        dark: "#002776",
+                        light: "#FFFFFF",
+                    },
+                },
+                function (error) {
+                    if (error) console.error(error);
                 }
+            );
 
-                // QR para la página de agradecimiento
-                const qrAgradecimiento = document.getElementById('qr-agradecimiento');
-                if (qrAgradecimiento) {
-                    qrAgradecimiento.innerHTML = '';
-                    generarQRConCanvas(qrAgradecimiento, urlAgradecimiento, '#009739');
+            // QR para la página de agradecimiento
+            QRCode.toCanvas(
+                document.getElementById("qr-agradecimiento"),
+                urlAgradecimiento,
+                {
+                    width: 150,
+                    height: 150,
+                    margin: 1,
+                    color: {
+                        dark: "#009739",
+                        light: "#FFFFFF",
+                    },
+                },
+                function (error) {
+                    if (error) console.error(error);
                 }
+            );
 
-                // QR para Instagram
-                const qrGaleria = document.getElementById('qr-galeria');
-                if (qrGaleria) {
-                    qrGaleria.innerHTML = '';
-                    generarQRConCanvas(qrGaleria, urlInstagram, '#E4405F');
+            // QR para Instagram
+            QRCode.toCanvas(
+                document.getElementById("qr-galeria"),
+                urlInstagram,
+                {
+                    width: 150,
+                    height: 150,
+                    margin: 1,
+                    color: {
+                        dark: "#E4405F",
+                        light: "#FFFFFF",
+                    },
+                },
+                function (error) {
+                    if (error) console.error(error);
                 }
+            );
 
-            } catch (error) {
-                console.error('Error en generarQRs:', error);
-                // Fallback: mostrar enlaces como texto
-                mostrarEnlacesComoTexto();
-            }
-        }
-
-        function generarQRConCanvas(container, text, color) {
-            try {
-                const typeNumber = 0; // Auto
-                const errorCorrectionLevel = 'L';
-                const qr = qrcode(typeNumber, errorCorrectionLevel);
-                qr.addData(text);
-                qr.make();
-
-                const canvas = document.createElement('canvas');
-                const size = 130; // Tamaño fijo para que quepa en el contenedor
-                const cellSize = size / qr.getModuleCount();
-                const margin = 0;
-
-                canvas.width = size;
-                canvas.height = size;
-                canvas.style.maxWidth = '100%';
-                canvas.style.height = 'auto';
-
-                const ctx = canvas.getContext('2d');
-
-                // Fondo blanco
-                ctx.fillStyle = '#FFFFFF';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                // Dibujar QR
-                ctx.fillStyle = color;
-                for (let row = 0; row < qr.getModuleCount(); row++) {
-                    for (let col = 0; col < qr.getModuleCount(); col++) {
-                        if (qr.isDark(row, col)) {
-                            ctx.fillRect(
-                                margin + col * cellSize,
-                                margin + row * cellSize,
-                                cellSize,
-                                cellSize
-                            );
-                        }
-                    }
+            // QR para el álbum
+            QRCode.toCanvas(
+                document.getElementById("qr-album"),
+                urlAlbum,
+                {
+                    width: 150,
+                    height: 150,
+                    margin: 1,
+                    color: {
+                        dark: "#FFD54F",
+                        light: "#FFFFFF",
+                    },
+                },
+                function (error) {
+                    if (error) console.error(error);
                 }
-
-                container.appendChild(canvas);
-
-            } catch (error) {
-                console.error('Error generando QR con canvas:', error);
-                mostrarErrorQR(container);
-            }
-        }
-
-        // Fallback: mostrar enlaces como texto si falla la generación de QR
-        function mostrarEnlacesComoTexto() {
-            const qrEncuesta = document.getElementById('qr-encuesta');
-            const qrAgradecimiento = document.getElementById('qr-agradecimiento');
-            const qrGaleria = document.getElementById('qr-galeria');
-
-            if (qrEncuesta) {
-                qrEncuesta.innerHTML = `
-                    <div style="text-align: center; padding: 10px;">
-                        <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Encuesta:</div>
-                        <a href="${urlEncuesta}" style="font-size: 10px; word-break: break-all; color: #002776;">
-                            ${urlEncuesta}
-                        </a>
-                    </div>
-                `;
-            }
-
-            if (qrAgradecimiento) {
-                qrAgradecimiento.innerHTML = `
-                    <div style="text-align: center; padding: 10px;">
-                        <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Agradecimiento:</div>
-                        <a href="${urlAgradecimiento}" style="font-size: 10px; word-break: break-all; color: #009739;">
-                            ${urlAgradecimiento}
-                        </a>
-                    </div>
-                `;
-            }
-
-            if (qrGaleria) {
-                qrGaleria.innerHTML = `
-                    <div style="text-align: center; padding: 10px;">
-                        <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Instagram:</div>
-                        <a href="${urlInstagram}" style="font-size: 10px; word-break: break-all; color: #E4405F;">
-                            @fonoaudiologia_uds
-                        </a>
-                    </div>
-                `;
-            }
-        }
-
-        // Mostrar error si falla la generación de QR
-        function mostrarErrorQR(element) {
-            if (element && typeof element.innerHTML !== 'undefined') {
-                element.innerHTML = `
-                    <div style="color: #666; font-size: 12px; text-align: center; padding: 20px;">
-                        ❌ Error cargando QR<br>
-                        <a href="javascript:generarQRs()" style="color: #002776; font-size: 10px;">
-                            Reintentar
-                        </a>
-                    </div>
-                `;
-            }
+            );
         }
 
         // Descargar QR individual
-        function descargarQR(url, nombre, color = '#002776') {
-            if (!verificarQRCode()) {
-                alert('La función de QR no está disponible. Intenta recargar la página.');
-                return;
-            }
-
-            try {
-                const typeNumber = 0;
-                const errorCorrectionLevel = 'L';
-                const qr = qrcode(typeNumber, errorCorrectionLevel);
-                qr.addData(url);
-                qr.make();
-
-                const canvas = document.createElement('canvas');
-                const size = 300;
-                const cellSize = size / qr.getModuleCount();
-
-                canvas.width = size;
-                canvas.height = size;
-
-                const ctx = canvas.getContext('2d');
-
-                // Fondo blanco
-                ctx.fillStyle = '#FFFFFF';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                // Dibujar QR
-                ctx.fillStyle = color;
-                for (let row = 0; row < qr.getModuleCount(); row++) {
-                    for (let col = 0; col < qr.getModuleCount(); col++) {
-                        if (qr.isDark(row, col)) {
-                            ctx.fillRect(
-                                col * cellSize,
-                                row * cellSize,
-                                cellSize,
-                                cellSize
-                            );
-                        }
+        function descargarQR(url, nombre, color = "#002776") {
+            // Crear un canvas temporal para el QR
+            const canvas = document.createElement("canvas");
+            QRCode.toCanvas(
+                canvas,
+                url,
+                {
+                    width: 300,
+                    height: 300,
+                    margin: 2,
+                    color: {
+                        dark: color,
+                        light: "#FFFFFF",
+                    },
+                },
+                function (error) {
+                    if (error) {
+                        console.error(error);
+                        return;
                     }
+
+                    // Convertir canvas a imagen y descargar
+                    const link = document.createElement("a");
+                    link.download = `QR_${nombre}.png`;
+                    link.href = canvas.toDataURL("image/png");
+                    link.click();
                 }
-
-                const link = document.createElement('a');
-                link.download = `QR_${nombre}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-
-            } catch (error) {
-                console.error('Error descargando QR:', error);
-                alert('Error al descargar el QR. Intenta nuevamente.');
-            }
+            );
         }
 
-        // Descargar ambos QRs
+        // Descargar todos los QRs
         function descargarQRs() {
-            descargarQR(urlEncuesta, 'Encuesta_Brasil', '#002776');
+            descargarQR(urlEncuesta, "Encuesta_Brasil", "#002776");
             setTimeout(() => {
-                descargarQR(urlAgradecimiento, 'Agradecimiento_Brasil', '#009739');
+                descargarQR(urlAgradecimiento, "Agradecimiento_Brasil", "#009739");
             }, 500);
             setTimeout(() => {
-                descargarQR(urlInstagram, 'Galeria_Instagram', '#E4405F');
+                descargarQR(urlInstagram, "Galeria_Instagram", "#E4405F");
             }, 1000);
+            setTimeout(() => {
+                descargarQR(urlAlbum, "Galeria_Completa", "#FFD54F");
+            }, 1500);
         }
 
         // Compartir con QR
         function compartirConQR() {
-            const mensaje = `¡Visita nuestro Stand de Brasil! 🇧🇷\n\n` +
+            const mensaje =
+                `¡Visita nuestro Stand de Brasil! 🇧🇷\n\n` +
                 `📝 Encuesta: ${urlEncuesta}\n` +
                 `🙏 Agradecimiento: ${urlAgradecimiento}\n` +
-                `📸 Galería: ${urlInstagram}\n\n` +
+                `📸 Galería Instagram: ${urlInstagram}\n` +
+                `🖼️ Galería Completa: ${urlAlbum}\n\n` +
                 `#Fonoferiabrasil`;
 
             if (navigator.share) {
                 navigator.share({
-                    title: 'Stand Brasil - Fonoferia',
+                    title: "Stand Brasil - Fonoferia",
                     text: mensaje,
-                    url: urlEncuesta
+                    url: urlEncuesta,
                 });
             } else {
-                navigator.clipboard.writeText(mensaje).then(() => {
-                    alert('✅ Enlaces copiados al portapapeles. ¡Compártelos con tus amigos!');
-                }).catch(() => {
-                    const textArea = document.createElement('textarea');
-                    textArea.value = mensaje;
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    alert('✅ Enlaces copiados al portapapeles. ¡Compártelos con tus amigos!');
-                });
+                // Copiar al portapapeles
+                navigator.clipboard
+                    .writeText(mensaje)
+                    .then(() => {
+                        alert(
+                            "✅ Enlaces copiados al portapapeles. ¡Compártelos con tus amigos!"
+                        );
+                    })
+                    .catch(() => {
+                        // Fallback para navegadores antiguos
+                        const textArea = document.createElement("textarea");
+                        textArea.value = mensaje;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand("copy");
+                        document.body.removeChild(textArea);
+                        alert(
+                            "✅ Enlaces copiados al portapapeles. ¡Compártelos con tus amigos!"
+                        );
+                    });
             }
-        }
-
-        // 🌈 Animación de confeti mejorada
-        function iniciarConfeti() {
-            const canvas = document.getElementById('confetti');
-            if (!canvas) return;
-
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            const confettiCount = 200;
-            const confetti = [];
-            const colors = ['#009739', '#FEDF00', '#002776', '#FFFFFF', '#FF6B6B'];
-
-            for (let i = 0; i < confettiCount; i++) {
-                confetti.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height - canvas.height,
-                    r: Math.random() * 8 + 3,
-                    d: Math.random() * confettiCount,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    tilt: Math.floor(Math.random() * 10) - 10,
-                    tiltAngle: 0,
-                    tiltAngleIncrement: Math.random() * 0.1 + 0.05
-                });
-            }
-
-            function drawConfetti() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                confetti.forEach(p => {
-                    ctx.save();
-                    ctx.translate(p.x + p.tilt, p.y);
-                    ctx.rotate(p.tiltAngle);
-                    ctx.fillStyle = p.color;
-                    ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r);
-                    ctx.restore();
-                });
-                updateConfetti();
-            }
-
-            function updateConfetti() {
-                confetti.forEach(p => {
-                    p.tiltAngle += p.tiltAngleIncrement;
-                    p.y += (Math.cos(p.d) + 1 + p.r / 2) * 0.5;
-                    p.x += Math.sin(p.d) * 2;
-                    p.tilt = Math.sin(p.tiltAngle) * 15;
-
-                    if (p.y > canvas.height) {
-                        p.x = Math.random() * canvas.width;
-                        p.y = -20;
-                        p.r = Math.random() * 8 + 3;
-                    }
-                });
-            }
-
-            function animate() {
-                drawConfetti();
-                requestAnimationFrame(animate);
-            }
-            animate();
         }
 
         // Crear partículas brasileñas
         function crearParticulas() {
-            const particlesContainer = document.getElementById('particles');
-            if (!particlesContainer) return;
-
-            const colors = ['#009739', '#FEDF00', '#002776'];
+            const particlesContainer = document.getElementById("particles");
+            const colors = ["#009739", "#FEDF00", "#002776"];
 
             for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                const particle = document.createElement("div");
+                particle.className = "particle";
+                particle.style.background =
+                    colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = Math.random() * 100 + "%";
+                particle.style.animationDelay = Math.random() * 8 + "s";
+                particle.style.animationDuration = Math.random() * 5 + 5 + "s";
                 particlesContainer.appendChild(particle);
             }
         }
 
-        // Inicializar todo cuando la página cargue
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('DOM cargado, inicializando efectos...');
-            crearParticulas();
-            iniciarConfeti();
+        // Función para seguir en Instagram
+        function seguirInstagram() {
+            const instagramUrl = "instagram://user?username=fonoaudiologia_uds";
+            window.location.href = instagramUrl;
 
-            // Esperar a que cargue la librería QR
+            // Fallback para navegadores que no soportan deep linking
             setTimeout(() => {
-                generarQRs();
-            }, 1000);
+                window.open(urlInstagram, "_blank");
+            }, 500);
+        }
+
+        // Función para ver galería de Instagram
+        function verGaleriaInstagram() {
+            window.open(urlInstagram, "_blank");
+        }
+
+        // Función para ir al álbum
+        function verAlbumCompleto() {
+            window.location.href = urlAlbum;
+        }
+
+        // Función para compartir original (mantener compatibilidad)
+        function compartir() {
+            if (navigator.share) {
+                navigator.share({
+                    title: "¡Visitá el Stand de Brasil! 🇧🇷",
+                    text: "Acabo de vivir una experiencia increíble en el Stand de Brasil. ¡No te lo pierdas!",
+                    url: window.location.href,
+                });
+            } else {
+                alert("¡Compartí tu experiencia con #Fonoferiabrasil! 🇧🇷");
+            }
+        }
+
+        // Inicializar efectos
+        document.addEventListener("DOMContentLoaded", function () {
+            crearParticulas();
+            generarQRs();
+
+            // Agregar event listeners a los botones
+            const btnAlbum = document.querySelector('button[onclick*="album.html"]');
+            if (btnAlbum) {
+                btnAlbum.addEventListener('click', verAlbumCompleto);
+            }
+
+            const btnSeguir = document.querySelector('button[onclick*="seguirInstagram"]');
+            if (btnSeguir) {
+                btnSeguir.addEventListener('click', seguirInstagram);
+            }
+
+            const btnGaleria = document.querySelector('button[onclick*="verGaleriaInstagram"]');
+            if (btnGaleria) {
+                btnGaleria.addEventListener('click', verGaleriaInstagram);
+            }
         });
 
         // Ajustar canvas al redimensionar
-        window.addEventListener('resize', function () {
-            const canvas = document.getElementById('confetti');
-            if (canvas) {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
+        window.addEventListener("resize", function () {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         });
+
+        // Hacer funciones globales para acceso desde HTML
+        window.descargarQRs = descargarQRs;
+        window.compartirConQR = compartirConQR;
+        window.seguirInstagram = seguirInstagram;
+        window.verGaleriaInstagram = verGaleriaInstagram;
+        window.verAlbumCompleto = verAlbumCompleto;
+        window.compartir = compartir;
     </script>
 </body>
 

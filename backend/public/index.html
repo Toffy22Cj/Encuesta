@@ -338,13 +338,27 @@
 
         <div id="mensaje" class="mensaje"></div>
 
-        <!-- Spinner de carga -->
-        <div id="spinner" style="display: none">
-          <div class="spinner"></div>
-          <p id="texto-carga">Enviando encuesta...</p>
-        </div>
-      </section>
+<!-- En la sección del formulario, después del spinner -->
+<div id="spinner" style="display: none">
+  <div class="spinner"></div>
+  <p id="texto-carga">Enviando encuesta...</p>
+</div>
 
+<!-- NUEVA SECCIÓN: Enlace al álbum que aparece después de enviar -->
+<div id="album-link" style="display: none; text-align: center; margin-top: 2rem;">
+  <div
+    style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2);">
+    <h3 style="color: var(--amarillo); margin-bottom: 1rem;">📸 ¡Gracias por participar!</h3>
+    <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem;">
+      Visita nuestra galería para ver más fotos del evento
+    </p>
+    <button onclick="window.location.href='album.html'" class="btn-galeria"
+      style="background: linear-gradient(45deg, var(--verde-claro), var(--azul));">
+      <span class="btn-icon">🖼️</span>
+      <span class="btn-text">Ver Galería Completa</span>
+    </button>
+  </div>
+</div>
       <!-- NUEVA SECCIÓN: Galería Instagram -->
       <section class="galeria-instagram">
         <h3>📸 Galería del Evento</h3>

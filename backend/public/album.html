@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Galería Fonoaudiología Brasil</title>
+    <style>
+        :root {
+            --verde: #1b5e20;
+            --verde-claro: #66bb6a;
+            --amarillo: #ffd54f;
+            --azul: #1e88e5;
+            --blanco: #fff;
+            --verde-oscuro: #0d3d0d;
+            --sombra: rgba(0, 0, 0, 0.3);
+            --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--verde-oscuro) 0%, var(--verde) 100%);
+            color: var(--blanco);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fondo decorativo similar al diseño principal */
+        .background-decor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background:
+                radial-gradient(circle at 20% 80%, var(--amarillo) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--azul) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, var(--verde-claro) 0%, transparent 50%);
+        }
+
+        .shell {
+            width: 1200px;
+            max-width: 95%;
+            background: var(--glass);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(2, 6, 23, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--verde-claro), var(--azul));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--blanco);
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0;
+            background: linear-gradient(45deg, var(--amarillo), var(--verde-claro));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p.lead {
+            margin: 5px 0 0 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* Collage grid mejorado */
+        .collage {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 140px;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--amarillo);
+        }
+
+        .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+
+        .item:hover img {
+            transform: scale(1.08);
+        }
+
+        .caption {
+            position: absolute;
+            left: 15px;
+            bottom: 15px;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.7), transparent);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        /* sizes */
+        .w6 {
+            grid-column: span 6;
+        }
+
+        .w4 {
+            grid-column: span 4;
+        }
+
+        .w3 {
+            grid-column: span 3;
+        }
+
+        .w2 {
+            grid-column: span 2;
+        }
+
+        .h2 {
+            grid-row: span 2;
+        }
+
+        /* Botones con estilo brasileño */
+        .btn {
+            background: linear-gradient(45deg, var(--verde-claro), var(--azul));
+            color: var(--blanco);
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(102, 187, 106, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 187, 106, 0.4);
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 2px solid var(--amarillo);
+            color: var(--amarillo);
+            box-shadow: none;
+        }
+
+        .btn.ghost:hover {
+            background: var(--amarillo);
+            color: var(--verde-oscuro);
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #E4405F, #F77737);
+            box-shadow: 0 4px 15px rgba(228, 64, 95, 0.3);
+        }
+
+        .btn-instagram:hover {
+            box-shadow: 0 6px 20px rgba(228, 64, 95, 0.4);
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .controls-left {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* modal carousel mejorado */
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(13, 61, 13, 0.9), rgba(27, 94, 32, 0.95));
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .viewer {
+            width: 90%;
+            max-width: 1000px;
+            height: 80vh;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .viewer img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 10px;
+            object-fit: contain;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--amarillo);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .nav:hover {
+            background: var(--amarillo);
+            color: var(--verde-oscuro);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav.left {
+            left: 20px;
+        }
+
+        .nav.right {
+            right: 20px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .close:hover {
+            background: var(--amarillo);
+            color: var(--verde-oscuro);
+            border-color: var(--amarillo);
+            transform: scale(1.1);
+        }
+
+        /* thumbnails mejorados */
+        .thumbs {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            overflow: auto;
+            padding: 10px 5px;
+            max-width: 100%;
+        }
+
+        .thumbs img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            opacity: 0.6;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .thumbs img:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .thumbs img.active {
+            opacity: 1;
+            border-color: var(--amarillo);
+            transform: scale(1.05);
+        }
+
+        /* Información de fonoaudiología */
+        .fono-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .fono-info h3 {
+            color: var(--amarillo);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .fono-info p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .fono-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--amarillo);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .collage {
+                grid-auto-rows: 110px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .shell {
+                padding: 20px;
+            }
+
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .header-actions {
+                justify-content: center;
+            }
+
+            .controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .controls-left {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .collage {
+                grid-template-columns: repeat(6, 1fr);
+                grid-auto-rows: 90px;
+            }
+
+            .w6 {
+                grid-column: span 6;
+            }
+
+            .w4 {
+                grid-column: span 3;
+            }
+
+            .w3 {
+                grid-column: span 2;
+            }
+
+            .nav {
+                width: 50px;
+                height: 50px;
+                font-size: 16px;
+            }
+
+            .viewer {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .collage {
+                grid-auto-rows: 70px;
+                gap: 8px;
+            }
+
+            .caption {
+                font-size: 12px;
+                left: 10px;
+                bottom: 10px;
+                padding: 6px 12px;
+            }
+
+            .fono-stats {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 10px;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .shell {
+            animation: fadeIn 0.8s ease;
+        }
+
+        .item {
+            animation: fadeIn 0.6s ease;
+        }
+
+        /* Scroll personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--verde-claro);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--amarillo);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fondo decorativo -->
+    <div class="background-decor"></div>
+
+    <div class="shell">
+        <header>
+            <div class="logo">🎓</div>
+            <div class="header-text">
+                <h1>Galería Fonoaudiología Brasil</h1>
+                <p class="lead">Descubre la magia de nuestro stand inspirado en la biodiversidad brasileña</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-instagram" onclick="seguirInstagram()">
+                    <span>❤️</span>
+                    <span>Seguir Instagram</span>
+                </button>
+                <button class="btn" onclick="window.location.href='index.html'">
+                    <span>🏠</span>
+                    <span>Volver al Stand</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Collage de imágenes -->
+        <section class="collage" id="collage">
+            <!-- Imágenes del stand de fonoaudiología -->
+            <div class="item w6 h2">
+                <img data-index="0" src="1.jpeg" alt="Stand principal de Fonoaudiología">
+                <div class="caption">Stand Principal</div>
+            </div>
+            <div class="item w3">
+                <img data-index="1" src="2.jpeg" alt="Actividades interactivas">
+                <div class="caption">Actividades</div>
+            </div>
+            <div class="item w3">
+                <img data-index="2" src="3.jpeg" alt="Equipo de fonoaudiología">
+                <div class="caption">Nuestro Equipo</div>
+            </div>
+            <div class="item w4 h2">
+                <img data-index="3" src="4.jpeg" alt="Visitantes disfrutando">
+                <div class="caption">Experiencias</div>
+            </div>
+            <div class="item w4">
+                <img data-index="4" src="5.jpeg" alt="Materiales educativos">
+                <div class="caption">Materiales</div>
+            </div>
+            <div class="item w3">
+
+        </section>
+
+        <div class="controls">
+            <div class="controls-left">
+                <button class="btn ghost" id="shuffle">
+                    <span>🔀</span>
+                    <span>Mezclar Fotos</span>
+                </button>
+                <button class="btn" id="fullscreen">
+                    <span>⤢</span>
+                    <span>Pantalla Completa</span>
+                </button>
+            </div>
+            <div class="muted" style="color: rgba(255,255,255,0.7); font-size: 14px;">
+                💚 Programa de Fonoaudiología — Brasil 2025
+            </div>
+        </div>
+
+        <!-- Información sobre fonoaudiología -->
+        <section class="fono-info">
+            <h3>🎓 Sobre Nuestro Programa</h3>
+            <p>El stand de Fonoaudiología combina la riqueza cultural brasileña con nuestra pasión por el cuidado de la
+                comunicación humana.
+                Cada elemento fue diseñado para crear una experiencia inmersiva y educativa.</p>
+
+            <div class="fono-stats">
+                <div class="stat">
+                    <div class="stat-icon">🗣️</div>
+                    <div class="stat-number">+500</div>
+                    <div class="stat-label">Visitantes Atendidos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">👂</div>
+                    <div class="stat-number">+50</div>
+                    <div class="stat-label">Evaluaciones Realizadas</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">😊</div>
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfacción</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">🌴</div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Ambiente Brasileño</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal / Carousel -->
+    <div class="modal" id="modal" aria-hidden="true">
+        <div class="viewer" role="dialog" aria-label="Visor de imágenes">
+            <button class="close" id="closeBtn" aria-label="Cerrar">✕</button>
+            <div class="nav left" id="prev" aria-hidden="false">◀</div>
+            <img id="viewerImg" src="" alt="" />
+            <div class="nav right" id="next">▶</div>
+            <div class="thumbs" id="thumbs"></div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const collage = document.getElementById('collage');
+            const items = Array.from(collage.querySelectorAll('.item img'));
+            let currentIndex = 0;
+
+            const modal = document.getElementById('modal');
+            const viewerImg = document.getElementById('viewerImg');
+            const thumbs = document.getElementById('thumbs');
+            const prev = document.getElementById('prev');
+            const next = document.getElementById('next');
+            const closeBtn = document.getElementById('closeBtn');
+
+            const images = items.map(i => ({ src: i.src, alt: i.alt, el: i }));
+
+            // build thumbnails
+            images.forEach((im, idx) => {
+                const t = document.createElement('img');
+                t.src = im.src; t.alt = im.alt; t.dataset.index = idx;
+                t.addEventListener('click', () => openAt(idx));
+                thumbs.appendChild(t);
+            });
+
+            function openAt(i) {
+                currentIndex = i; show(); modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
+            }
+
+            function close() { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); }
+
+            function show() {
+                const im = images[currentIndex]; viewerImg.src = im.src; viewerImg.alt = im.alt || 'Imagen del stand de Fonoaudiología';
+                // set active thumb
+                Array.from(thumbs.children).forEach(c => c.classList.toggle('active', +c.dataset.index === currentIndex));
+            }
+
+            // attach clicks on collage
+            items.forEach((img, idx) => img.addEventListener('click', () => openAt(idx)));
+
+            prev.addEventListener('click', () => { currentIndex = (currentIndex - 1 + images.length) % images.length; show(); });
+            next.addEventListener('click', () => { currentIndex = (currentIndex + 1) % images.length; show(); });
+            closeBtn.addEventListener('click', close);
+            modal.addEventListener('click', e => { if (e.target === modal) close(); });
+
+            // keyboard
+            window.addEventListener('keydown', e => {
+                if (modal.classList.contains('open')) {
+                    if (e.key === 'ArrowLeft') prev.click();
+                    if (e.key === 'ArrowRight') next.click();
+                    if (e.key === 'Escape') close();
+                }
+            });
+
+            // Shuffle feature
+            document.getElementById('shuffle').addEventListener('click', () => {
+                // simple shuffle of image srcs
+                const srcs = images.map(x => x.src);
+                for (let i = srcs.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[srcs[i], srcs[j]] = [srcs[j], srcs[i]] }
+                items.forEach((it, idx) => { it.src = srcs[idx] || it.src; images[idx].src = it.src; thumbs.children[idx].src = it.src; });
+            });
+
+            // Fullscreen toggle
+            document.getElementById('fullscreen').addEventListener('click', () => {
+                const el = document.querySelector('.shell');
+                if (!document.fullscreenElement) el.requestFullscreen?.(); else document.exitFullscreen?.();
+            });
+
+            // make sure first image is active in thumbs
+            show();
+
+            // Función para seguir en Instagram
+            function seguirInstagram() {
+                const instagramUrl = 'instagram://user?username=fonoaudiologia_uds';
+                window.location.href = instagramUrl;
+
+                // Fallback para navegadores que no soportan deep linking
+                setTimeout(() => {
+                    window.open('https://www.instagram.com/fonoaudiologia_uds?igsh=MTZldTQ1cmU5ZGVmMQ%3D%3D&utm_source=qr', '_blank');
+                }, 500);
+            }
+
+            // Hacer la función global
+            window.seguirInstagram = seguirInstagram;
+
+        })();
+    </script>
+</body>
+
+</html>

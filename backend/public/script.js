@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // ========== FUNCIONES INSTAGRAM ==========
 function verGaleriaInstagram() {
-  window.open(urlInstagram, "_blank");
+  window.open("album.html", "_blank");
 }
 
 function seguirInstagram() {
@@ -302,6 +302,7 @@ function manejarEnvioFormulario(e) {
 }
 
 // Función para enviar datos al servidor
+// Función para enviar datos al servidor
 async function enviarEncuesta(datos) {
   try {
     const response = await fetch("/api/encuesta", {
@@ -315,8 +316,20 @@ async function enviarEncuesta(datos) {
     const resultado = await response.json();
 
     if (resultado.success) {
-      // Redirigir a la página de agradecimiento
-      window.location.href = "gracias.html";
+      // Mostrar enlace al álbum antes de redirigir
+      const albumLink = document.getElementById("album-link");
+      if (albumLink) {
+        albumLink.style.display = "block";
+        albumLink.scrollIntoView({ behavior: "smooth" });
+
+        // Redirigir después de 3 segundos para que vean el enlace
+        setTimeout(() => {
+          window.location.href = "gracias.html";
+        }, 3000);
+      } else {
+        // Redirigir inmediatamente si no encuentra el elemento
+        window.location.href = "gracias.html";
+      }
     } else {
       mostrarErrorFormulario(resultado.message);
       restaurarBoton();
@@ -327,7 +340,6 @@ async function enviarEncuesta(datos) {
     restaurarBoton();
   }
 }
-
 // Función para mostrar errores del formulario
 function mostrarErrorFormulario(mensaje) {
   if (!mensaje) return;
